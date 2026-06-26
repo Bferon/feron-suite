@@ -71,6 +71,7 @@
                     <th>Plaats</th>
                     <th>Telefoon</th>
                     <th>Email</th>
+                    <th>Acties</th>
                 </tr>
 
             </thead>
@@ -85,6 +86,12 @@
                     <td>{{ klant.plaats }}</td>
                     <td>{{ klant.telefoon }}</td>
                     <td>{{ klant.email }}</td>
+
+                    <td>
+                        <a href="/klanten/{{ klant.id }}" class="btn btn-primary btn-sm">
+                            Open
+                        </a>
+                    </td>
 
                 </tr>
 

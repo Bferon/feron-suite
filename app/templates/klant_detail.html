@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Klant{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <h1>{{ klant.naam }}</h1>
+
+    <a href="/project/nieuw" class="btn btn-success">
+        ➕ Nieuw project
+    </a>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-4">
+
+        <div class="card shadow mb-4">
+
+            <div class="card-header">
+                Klantgegevens
+            </div>
+
+            <div class="card-body">
+
+                <p><strong>Adres</strong><br>{{ klant.adres }}</p>
+
+                <p><strong>Postcode</strong><br>{{ klant.postcode }}</p>
+
+                <p><strong>Plaats</strong><br>{{ klant.plaats }}</p>
+
+                <p><strong>Telefoon</strong><br>{{ klant.telefoon }}</p>
+
+                <p><strong>E-mail</strong><br>{{ klant.email }}</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-8">
+
+        <div class="card shadow">
+
+            <div class="card-header">
+                Projecten
+            </div>
+
+            <div class="card-body">
+
+                <p class="text-muted">
+                    Er zijn nog geen projecten.
+                </p>
+
+                <a href="/project/nieuw" class="btn btn-primary">
+                    Eerste project aanmaken
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
