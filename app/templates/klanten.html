@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Klanten{% endblock %}
+
+{% block content %}
+
+<h1 class="mb-4">👤 Klanten</h1>
+
+<div class="card shadow">
+    <div class="card-body">
+
+        <h3>Nieuwe klant</h3>
+
+        <form>
+
+            <div class="mb-3">
+                <label class="form-label">Naam</label>
+                <input type="text" class="form-control" placeholder="Naam klant">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Adres</label>
+                <input type="text" class="form-control" placeholder="Straat + huisnummer">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Postcode</label>
+                <input type="text" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Woonplaats</label>
+                <input type="text" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Telefoonnummer</label>
+                <input type="text" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">E-mailadres</label>
+                <input type="email" class="form-control">
+            </div>
+
+            <button class="btn btn-primary">
+                Klant opslaan
+            </button>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

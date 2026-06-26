@@ -1,16 +1,81 @@
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-    <meta charset="UTF-8">
-    <title>Feron Suite</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-<h1>⚡ Feron Suite</h1>
+{% block title %}
+Dashboard
+{% endblock %}
 
-<h2>Dashboard</h2>
+{% block content %}
 
-<p>Welkom Bryan!</p>
+<h1 class="mb-4">
+    Dashboard
+</h1>
 
-</body>
-</html>
+<div class="row">
+
+    <div class="col-md-3">
+
+        <div class="card shadow">
+
+            <div class="card-body">
+
+                <h5>👤 Klanten</h5>
+
+                <h1>0</h1>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card shadow">
+
+            <div class="card-body">
+
+                <h5>📁 Projecten</h5>
+
+                <h1>0</h1>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card shadow">
+
+            <div class="card-body">
+
+                <h5>🔋 ESS</h5>
+
+                <h1>0</h1>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card shadow">
+
+            <div class="card-body">
+
+                <h5>📄 Offertes</h5>
+
+                <h1>0</h1>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

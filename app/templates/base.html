@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}Feron Suite{% endblock %}</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+
+<div class="d-flex">
+
+    <div class="sidebar">
+
+        <h3 class="mb-4">⚡ Feron Suite</h3>
+
+        <a href="/">🏠 Dashboard</a>
+
+        <a href="/klanten">👤 Klanten</a>
+
+        <a href="/projecten">📁 Projecten</a>
+
+        <a href="/project/nieuw">➕ Nieuw Project</a>
+
+        <a href="/ess">🔋 ESS</a>
+
+        <a href="#">⚡ Meterkasten</a>
+
+        <a href="#">🚗 Laadpalen</a>
+
+        <a href="#">📋 IBS</a>
+
+        <a href="#">📄 Offertes</a>
+
+        <a href="#">⚙️ Instellingen</a>
+
+    </div>
+
+    <div class="content">
+
+        {% block content %}
+
+        {% endblock %}
+
+    </div>
+
+</div>
+
+</body>
+</html>

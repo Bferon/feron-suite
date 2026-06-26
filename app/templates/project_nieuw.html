@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Nieuw Project{% endblock %}
+
+{% block content %}
+
+<h1 class="mb-4">➕ Nieuw Project</h1>
+
+<p class="text-muted">
+Kies welk type project je wilt starten.
+</p>
+
+<div class="row">
+
+    <div class="col-md-4 mb-4">
+        <div class="card shadow h-100">
+            <div class="card-body text-center">
+                <h2>🔋</h2>
+                <h4>ESS Systeem</h4>
+                <p>Victron • Dyness • Enphase</p>
+                <button class="btn btn-primary">
+                    Start ESS Project
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+        <div class="card shadow h-100">
+            <div class="card-body text-center">
+                <h2>⚡</h2>
+                <h4>Meterkast</h4>
+                <p>Nieuwe groepenkast</p>
+                <button class="btn btn-primary">
+                    Start Meterkast
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+        <div class="card shadow h-100">
+            <div class="card-body text-center">
+                <h2>🚗</h2>
+                <h4>Laadpaal</h4>
+                <p>Zaptec • Easee • Alfen</p>
+                <button class="btn btn-primary">
+                    Start Laadpaal
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
