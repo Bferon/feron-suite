@@ -6,41 +6,45 @@
 
 <h1 class="mb-4">👤 Klanten</h1>
 
-<div class="card shadow">
+<div class="card shadow mb-4">
     <div class="card-body">
 
         <h3>Nieuwe klant</h3>
 
-        <form>
+        <form method="post">
 
-            <div class="mb-3">
-                <label class="form-label">Naam</label>
-                <input type="text" class="form-control" placeholder="Naam klant">
-            </div>
+            <div class="row">
 
-            <div class="mb-3">
-                <label class="form-label">Adres</label>
-                <input type="text" class="form-control" placeholder="Straat + huisnummer">
-            </div>
+                <div class="col-md-6 mb-3">
+                    <label>Naam</label>
+                    <input type="text" name="naam" class="form-control" required>
+                </div>
 
-            <div class="mb-3">
-                <label class="form-label">Postcode</label>
-                <input type="text" class="form-control">
-            </div>
+                <div class="col-md-6 mb-3">
+                    <label>Adres</label>
+                    <input type="text" name="adres" class="form-control">
+                </div>
 
-            <div class="mb-3">
-                <label class="form-label">Woonplaats</label>
-                <input type="text" class="form-control">
-            </div>
+                <div class="col-md-3 mb-3">
+                    <label>Postcode</label>
+                    <input type="text" name="postcode" class="form-control">
+                </div>
 
-            <div class="mb-3">
-                <label class="form-label">Telefoonnummer</label>
-                <input type="text" class="form-control">
-            </div>
+                <div class="col-md-5 mb-3">
+                    <label>Plaats</label>
+                    <input type="text" name="plaats" class="form-control">
+                </div>
 
-            <div class="mb-3">
-                <label class="form-label">E-mailadres</label>
-                <input type="email" class="form-control">
+                <div class="col-md-4 mb-3">
+                    <label>Telefoon</label>
+                    <input type="text" name="telefoon" class="form-control">
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>E-mailadres</label>
+                    <input type="email" name="email" class="form-control">
+                </div>
+
             </div>
 
             <button class="btn btn-primary">
@@ -50,6 +54,48 @@
         </form>
 
     </div>
+</div>
+
+<div class="card shadow">
+
+    <div class="card-body">
+
+        <h3>Klanten</h3>
+
+        <table class="table table-striped">
+
+            <thead>
+
+                <tr>
+                    <th>Naam</th>
+                    <th>Plaats</th>
+                    <th>Telefoon</th>
+                    <th>Email</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for klant in klanten %}
+
+                <tr>
+
+                    <td>{{ klant.naam }}</td>
+                    <td>{{ klant.plaats }}</td>
+                    <td>{{ klant.telefoon }}</td>
+                    <td>{{ klant.email }}</td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
 </div>
 
 {% endblock %}
