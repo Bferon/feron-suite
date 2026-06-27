@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Boolean
 
 from app.database import Base
 
@@ -14,3 +14,5 @@ class Klant(Base):
     plaats = Column(String)
     telefoon = Column(String)
     email = Column(String)
+
+    actief = Column(Boolean, default=True)

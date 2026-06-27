@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}Archief klanten{% endblock %}
+
+{% block content %}
+
+<h1 class="mb-4">📦 Gearchiveerde klanten</h1>
+
+<div class="card shadow">
+
+    <div class="card-body">
+
+        <table class="table table-hover">
+
+            <thead>
+                <tr>
+                    <th>Naam</th>
+                    <th>Plaats</th>
+                    <th>Telefoon</th>
+                    <th>E-mail</th>
+                    <th>Actie</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+            {% for klant in klanten %}
+
+                <tr>
+
+                    <td>{{ klant.naam }}</td>
+                    <td>{{ klant.plaats }}</td>
+                    <td>{{ klant.telefoon }}</td>
+                    <td>{{ klant.email }}</td>
+
+                    <td>
+
+                        <a href="/klanten/{{ klant.id }}/herstel"
+                           class="btn btn-success btn-sm"
+                           onclick="return confirm('Deze klant herstellen?');">
+                            ↩ Herstel
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            {% if not klanten %}
+                <tr>
+                    <td colspan="5" class="text-center text-muted">
+                        Geen gearchiveerde klanten gevonden.
+                    </td>
+                </tr>
+            {% endif %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Klant bewerken{% endblock %}
+
+{% block content %}
+
+<h1 class="mb-4">✏️ Klant bewerken</h1>
+
+<div class="card shadow">
+
+    <div class="card-body">
+
+        <form method="post">
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Naam</label>
+                    <input type="text" class="form-control" name="naam" value="{{ klant.naam }}" required>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Adres</label>
+                    <input type="text" class="form-control" name="adres" value="{{ klant.adres or '' }}">
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <label class="form-label">Postcode</label>
+                    <input type="text" class="form-control" name="postcode" value="{{ klant.postcode or '' }}">
+                </div>
+
+                <div class="col-md-5 mb-3">
+                    <label class="form-label">Plaats</label>
+                    <input type="text" class="form-control" name="plaats" value="{{ klant.plaats or '' }}">
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Telefoon</label>
+                    <input type="text" class="form-control" name="telefoon" value="{{ klant.telefoon or '' }}">
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">E-mailadres</label>
+                    <input type="email" class="form-control" name="email" value="{{ klant.email or '' }}">
+                </div>
+
+            </div>
+
+            <button class="btn btn-success">
+                💾 Wijzigingen opslaan
+            </button>
+
+            <a href="/klanten" class="btn btn-secondary">
+                Annuleren
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
