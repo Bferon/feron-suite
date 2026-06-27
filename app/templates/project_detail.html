@@ -7,33 +7,27 @@
 <div class="d-flex justify-content-between align-items-center mb-4">
 
     <div>
-
-        <h2 class="mb-1">
-            {{ project.naam }}
-        </h2>
-
-        <p class="text-muted mb-0">
+        <h1>📁 {{ project.naam }}</h1>
+        <p class="text-muted">
             {{ project.projectnummer or "Nog geen projectnummer" }}
         </p>
-
     </div>
 
     <div class="d-flex gap-2">
 
-        <a href="/projecten/{{ project.id }}/archiveer"
-           class="btn btn-outline-danger"
-           onclick="return confirm('Weet je zeker dat je dit project wilt archiveren?');">
-
-            <i class="bi bi-archive"></i>
-            Archiveren
-
-        </a>
-
         <a href="/project/{{ project.id }}/bewerken"
-           class="btn btn-primary">
+           class="btn btn-warning">
 
             <i class="bi bi-pencil"></i>
             Bewerken
+
+        </a>
+
+        <a href="/projecten"
+           class="btn btn-secondary">
+
+            <i class="bi bi-arrow-left"></i>
+            Terug
 
         </a>
 
@@ -41,110 +35,79 @@
 
 </div>
 
-<div class="row g-4">
+<div class="row">
 
-    <!-- Linkerkolom -->
+    <div class="col-md-4">
 
-    <div class="col-lg-4">
-
-        <div class="card">
+        <div class="card shadow mb-4">
 
             <div class="card-header">
-
-                <i class="bi bi-info-circle"></i>
                 Projectgegevens
-
             </div>
 
             <div class="card-body">
 
-                <table class="table table-borderless mb-0">
+                <p>
+                    <strong>Klant</strong><br>
+                    {{ project.klant.naam }}
+                </p>
 
-                    <tr>
-                        <th>Projectnummer</th>
-                        <td>{{ project.projectnummer }}</td>
-                    </tr>
+                <p>
+                    <strong>Type</strong><br>
+                    {{ project.type }}
+                </p>
 
-                    <tr>
-                        <th>Klant</th>
-                        <td>{{ project.klant.naam }}</td>
-                    </tr>
+                <p>
+                    <strong>Startdatum</strong><br>
+                    {{ project.startdatum or "-" }}
+                </p>
 
-                    <tr>
-                        <th>Type</th>
-                        <td>{{ project.type }}</td>
-                    </tr>
+                <p>
+                    <strong>Einddatum</strong><br>
+                    {{ project.einddatum or "-" }}
+                </p>
 
-                    <tr>
-                        <th>Status</th>
-                        <td>
+                <p>
+                    <strong>Offertebedrag</strong><br>
+                    € {{ "%.2f"|format(project.offertebedrag or 0) }}
+                </p>
 
-                            {% if project.status == "Nieuw" %}
-                                <span class="badge badge-nieuw">{{ project.status }}</span>
+                <p>
+                    <strong>Status</strong><br>
 
-                            {% elif project.status == "Offerte" %}
-                                <span class="badge badge-offerte">{{ project.status }}</span>
+                    {% if project.status == "Nieuw" %}
 
-                            {% elif project.status == "Gepland" %}
-                                <span class="badge badge-gepland">{{ project.status }}</span>
+                        <span class="badge badge-nieuw">
+                            {{ project.status }}
+                        </span>
 
-                            {% elif project.status == "In uitvoering" %}
-                                <span class="badge badge-uitvoering">{{ project.status }}</span>
+                    {% elif project.status == "Gepland" %}
 
-                            {% elif project.status == "Gereed" %}
-                                <span class="badge badge-gereed">{{ project.status }}</span>
+                        <span class="badge badge-gepland">
+                            {{ project.status }}
+                        </span>
 
-                            {% else %}
-                                <span class="badge badge-afgerond">{{ project.status }}</span>
+                    {% elif project.status == "In uitvoering" %}
 
-                            {% endif %}
+                        <span class="badge badge-uitvoering">
+                            {{ project.status }}
+                        </span>
 
-                        </td>
-                    </tr>
+                    {% elif project.status == "Gereed" %}
 
-                    <tr>
-                        <th>Startdatum</th>
-                        <td>{{ project.startdatum or "-" }}</td>
-                    </tr>
+                        <span class="badge badge-gereed">
+                            {{ project.status }}
+                        </span>
 
-                    <tr>
-                        <th>Einddatum</th>
-                        <td>{{ project.einddatum or "-" }}</td>
-                    </tr>
+                    {% else %}
 
-                    <tr>
-                        <th>Offertebedrag</th>
-                        <td>€ {{ "%.2f"|format(project.offertebedrag or 0) }}</td>
-                    </tr>
+                        <span class="badge badge-afgerond">
+                            {{ project.status }}
+                        </span>
 
-                </table>
+                    {% endif %}
 
-            </div>
-
-        </div>
-
-        <div class="card mt-4">
-
-            <div class="card-header">
-
-                <i class="bi bi-chat-left-text"></i>
-                Opmerkingen
-
-            </div>
-
-            <div class="card-body">
-
-                {% if project.opmerkingen %}
-
-                    {{ project.opmerkingen }}
-
-                {% else %}
-
-                    <span class="text-muted">
-                        Nog geen opmerkingen.
-                    </span>
-
-                {% endif %}
+                </p>
 
             </div>
 
@@ -152,17 +115,12 @@
 
     </div>
 
-    <!-- Rechterkolom -->
+    <div class="col-md-8">
 
-    <div class="col-lg-8">
-
-        <div class="card">
+        <div class="card shadow">
 
             <div class="card-header">
-
-                <i class="bi bi-grid"></i>
                 Projectmodules
-
             </div>
 
             <div class="card-body">
@@ -170,51 +128,69 @@
                 <div class="row g-3">
 
                     <div class="col-md-6">
+
                         <a href="/project/{{ project.id }}/ess"
-   class="btn btn-outline-primary w-100 py-3">
+                           class="btn btn-outline-primary w-100">
 
-    <i class="bi bi-battery-charging fs-3"></i>
+                            🔋 ESS Wizard
 
-    <br>
+                        </a>
 
-    ESS
-
-</a>
                     </div>
 
                     <div class="col-md-6">
-                        <a href="#" class="btn btn-outline-primary w-100 py-3">
-                            <i class="bi bi-lightning-charge"></i><br>
-                            Meterkast
+
+                        <a href="#"
+                           class="btn btn-outline-primary w-100">
+
+                            ⚡ Meterkast
+
                         </a>
+
                     </div>
 
                     <div class="col-md-6">
-                        <a href="#" class="btn btn-outline-primary w-100 py-3">
-                            <i class="bi bi-ev-front"></i><br>
-                            Laadpaal
+
+                        <a href="#"
+                           class="btn btn-outline-primary w-100">
+
+                            🚗 Laadpaal
+
                         </a>
+
                     </div>
 
                     <div class="col-md-6">
-                        <a href="#" class="btn btn-outline-primary w-100 py-3">
-                            <i class="bi bi-file-earmark-text"></i><br>
-                            Offertes
+
+                        <a href="/offerte/{{ project.offerte.id if project.offerte else '' }}"
+                           class="btn btn-outline-primary w-100">
+
+                            📄 Offerte
+
                         </a>
+
                     </div>
 
                     <div class="col-md-6">
-                        <a href="#" class="btn btn-outline-primary w-100 py-3">
-                            <i class="bi bi-tools"></i><br>
-                            Werkbonnen
+
+                        <a href="#"
+                           class="btn btn-outline-primary w-100">
+
+                            📋 Werkbon
+
                         </a>
+
                     </div>
 
                     <div class="col-md-6">
-                        <a href="#" class="btn btn-outline-primary w-100 py-3">
-                            <i class="bi bi-camera"></i><br>
-                            Foto's
+
+                        <a href="#"
+                           class="btn btn-outline-primary w-100">
+
+                            📷 Foto's
+
                         </a>
+
                     </div>
 
                 </div>

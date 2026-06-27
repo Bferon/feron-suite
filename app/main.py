@@ -36,6 +36,14 @@ from app.routes import materiaal
 from app.routes import instellingen
 from app.routes import zoeken
 from app.routes import offerteregel_nieuw
+from app.routes import ess_wizard
+from app.models import (
+    Klant,
+    Project,
+    Materiaal,
+    Instellingen,
+    EssWizard,
+)
 
 # Database
 Base.metadata.create_all(bind=engine)
@@ -59,6 +67,7 @@ app.include_router(klanten.router)
 app.include_router(klant.router)
 app.include_router(zoeken.router)
 
+
 # Projecten
 app.include_router(projecten.router)
 app.include_router(project_nieuw.router)
@@ -66,6 +75,7 @@ app.include_router(project.router)
 app.include_router(project_bewerken.router)
 app.include_router(project_ess.router)
 app.include_router(projecten_archief.router)
+
 
 # Offertes
 app.include_router(offertes.router)
@@ -75,6 +85,7 @@ app.include_router(offerteregel_nieuw.router)
 
 # Installaties
 app.include_router(ess.router)
+app.include_router(ess_wizard.router)
 
 # AI
 app.include_router(ai.router)
@@ -85,3 +96,5 @@ app.include_router(materiaal.router)
 
 # Instellingen
 app.include_router(instellingen.router)
+
+Base.metadata.create_all(bind=engine)

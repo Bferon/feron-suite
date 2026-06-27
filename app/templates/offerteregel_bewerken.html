@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+
+{% block title %}Offerteregel bewerken{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-lg-6">
+
+        <div class="card shadow">
+
+            <div class="card-header">
+
+                <h4 class="mb-0">
+
+                    <i class="bi bi-pencil-square"></i>
+
+                    Offerteregel bewerken
+
+                </h4>
+
+            </div>
+
+            <div class="card-body">
+
+                <form method="post">
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+
+                            Omschrijving
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            value="{{ regel.omschrijving }}"
+                            disabled>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-4">
+
+                            <label class="form-label">
+
+                                Aantal
+
+                            </label>
+
+                            <input
+                                type="number"
+                                class="form-control"
+                                name="aantal"
+                                value="{{ regel.aantal }}"
+                                step="0.1"
+                                min="0">
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <label class="form-label">
+
+                                Eenheid
+
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                value="{{ regel.eenheid }}"
+                                disabled>
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <label class="form-label">
+
+                                Prijs
+
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                value="€ {{ '%.2f'|format(regel.prijs) }}"
+                                disabled>
+
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    <div class="mb-4">
+
+                        <h5>
+
+                            Regeltotaal
+
+                        </h5>
+
+                        <h3 class="text-primary">
+
+                            € {{ "%.2f"|format(regel.totaal) }}
+
+                        </h3>
+
+                    </div>
+
+                    <button
+                        class="btn btn-success">
+
+                        <i class="bi bi-check-circle"></i>
+
+                        Opslaan
+
+                    </button>
+
+                    <a
+                        href="/offerte/{{ regel.offerte_id }}"
+                        class="btn btn-secondary">
+
+                        Annuleren
+
+                    </a>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

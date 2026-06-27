@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block title %}ESS Wizard{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">
+    🔋 ESS Wizard
+</h2>
+
+<div class="card shadow">
+
+    <div class="card-header">
+
+        Stap 1 - Elektrische installatie
+
+    </div>
+
+    <div class="card-body">
+
+        <form method="post">
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Netaansluiting
+                    </label>
+
+                    <select
+                        name="netaansluiting"
+                        class="form-select">
+
+                        <option value="1-fase">
+                            1-fase
+                        </option>
+
+                        <option value="3-fase">
+                            3-fase
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Hoofdzekering
+                    </label>
+
+                    <select
+                        name="hoofdzekering"
+                        class="form-select">
+
+                        <option value="25">25 A</option>
+                        <option value="35">35 A</option>
+                        <option value="50">50 A</option>
+                        <option value="63">63 A</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Jaarverbruik (kWh)
+                    </label>
+
+                    <input
+                        type="number"
+                        class="form-control"
+                        name="jaarverbruik">
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Jaarlijkse teruglevering (kWh)
+                    </label>
+
+                    <input
+                        type="number"
+                        class="form-control"
+                        name="teruglevering">
+
+                </div>
+
+            </div>
+
+            <hr>
+
+            <button class="btn btn-success">
+
+                Volgende
+
+                <i class="bi bi-arrow-right"></i>
+
+            </button>
+
+            <a
+                href="/project/{{ project.id }}"
+                class="btn btn-secondary">
+
+                Annuleren
+
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
