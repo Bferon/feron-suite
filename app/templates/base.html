@@ -1,54 +1,313 @@
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>{% block title %}Feron Suite{% endblock %}</title>
 
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Eigen CSS -->
     <link rel="stylesheet" href="/static/css/style.css">
+
 </head>
 
 <body>
 
 <div class="d-flex">
 
+    <!-- ===================== -->
+    <!-- SIDEBAR -->
+    <!-- ===================== -->
+
     <div class="sidebar">
 
-        <h3 class="mb-4">⚡ Feron Suite</h3>
+        <div class="text-center mb-4">
 
-        <a href="/">🏠 Dashboard</a>
+            <a href="/">
+                <img
+                    src="/static/images/logo.png"
+                    alt="Installatiebedrijf Feron"
+                    class="img-fluid"
+                    style="max-width:85px;">
+            </a>
 
-        <a href="/klanten">👤 Actieve klanten</a>
+        </div>
 
-        <a href="/klanten/archief">📦 Archief klanten</a>
+        <!-- Dashboard -->
 
-        <a href="/projecten">📁 Projecten</a>
+        <div class="menu-title">
+            Dashboard
+        </div>
 
-        <a href="/ess">🔋 ESS</a>
+        <a href="/">
+            <i class="bi bi-house-door"></i>
+            Dashboard
+        </a>
 
-        <a href="#">⚡ Meterkasten</a>
+        <!-- CRM -->
 
-        <a href="#">🚗 Laadpalen</a>
+        <div class="menu-title">
+            CRM
+        </div>
 
-        <a href="#">📋 IBS</a>
+        <a href="/klanten">
+            <i class="bi bi-people"></i>
+            Klanten
+        </a>
 
-        <a href="#">📄 Offertes</a>
+        <a href="/klanten/archief">
+            <i class="bi bi-archive"></i>
+            Archief
+        </a>
 
-        <a href="#">⚙️ Instellingen</a>
+        <a href="/projecten">
+            <i class="bi bi-folder2-open"></i>
+            Projecten
+        </a>
+
+        <!-- Calculatie -->
+
+        <div class="menu-title">
+            Calculatie
+        </div>
+
+        <a href="/ai">
+            <i class="bi bi-robot"></i>
+            AI Calculator
+        </a>
+
+        <a href="/materialen">
+            <i class="bi bi-box-seam"></i>
+            Materiaalbibliotheek
+            <a href="/materialen/archief">
+    <i class="bi bi-archive"></i>
+    Archief materialen
+</a>
+        </a>
+
+        <a href="#">
+            <i class="bi bi-file-earmark-text"></i>
+            Offertes
+        </a>
+
+        <!-- Installaties -->
+
+        <div class="menu-title">
+            Installaties
+        </div>
+
+        <a href="/ess">
+            <i class="bi bi-battery-charging"></i>
+            ESS
+        </a>
+
+        <a href="#">
+            <i class="bi bi-lightning-charge"></i>
+            Meterkasten
+        </a>
+
+        <a href="#">
+            <i class="bi bi-ev-front"></i>
+            Laadpalen
+        </a>
+
+        <!-- Service -->
+
+        <div class="menu-title">
+            Service
+        </div>
+
+        <a href="#">
+            <i class="bi bi-clipboard-check"></i>
+            IBS
+        </a>
+
+        <!-- Instellingen -->
+
+        <div class="menu-title">
+            Systeem
+        </div>
+
+        <a href="#">
+            <i class="bi bi-gear"></i>
+            Instellingen
+        </a>
 
     </div>
 
+    <!-- ===================== -->
+    <!-- CONTENT -->
+    <!-- ===================== -->
+
     <div class="content">
 
-        {% block content %}
+        <!-- TOPBAR -->
 
+        <div class="topbar">
+
+            <div class="row align-items-center">
+
+                <div class="col">
+
+                    <input
+                        id="globalSearch"
+                        type="text"
+                        class="form-control"
+                        placeholder="Zoek klant, project of projectnummer... (Ctrl + F)">
+
+                </div>
+
+                <div class="col-auto">
+
+                    <div class="dropdown">
+
+                        <button
+                            class="btn btn-primary dropdown-toggle"
+                            data-bs-toggle="dropdown">
+
+                            <i class="bi bi-plus-circle"></i>
+                            Nieuw
+
+                        </button>
+
+                        <ul class="dropdown-menu dropdown-menu-end">
+
+                            <li>
+
+                                <a class="dropdown-item" href="/klanten">
+
+                                    <i class="bi bi-person-plus"></i>
+
+                                    Nieuwe klant
+
+                                </a>
+
+                            </li>
+
+                            <li>
+
+                                <a class="dropdown-item" href="/project/nieuw">
+
+                                    <i class="bi bi-folder-plus"></i>
+
+                                    Nieuw project
+
+                                </a>
+
+                            </li>
+
+                            <li>
+
+                                <a class="dropdown-item" href="/materialen">
+
+                                    <i class="bi bi-box-seam"></i>
+
+                                    Nieuw materiaal
+
+                                </a>
+
+                            </li>
+
+                            <li><hr class="dropdown-divider"></li>
+
+                            <li>
+
+                                <a class="dropdown-item" href="/ai">
+
+                                    <i class="bi bi-robot"></i>
+
+                                    AI Calculator
+
+                                </a>
+
+                            </li>
+
+                            <li>
+
+                                <a class="dropdown-item" href="/ess">
+
+                                    <i class="bi bi-battery-charging"></i>
+
+                                    Nieuwe ESS
+
+                                </a>
+
+                            </li>
+
+                            <li>
+
+                                <a class="dropdown-item" href="#">
+
+                                    <i class="bi bi-lightning-charge"></i>
+
+                                    Nieuwe meterkast
+
+                                </a>
+
+                            </li>
+
+                            <li>
+
+                                <a class="dropdown-item" href="#">
+
+                                    <i class="bi bi-ev-front"></i>
+
+                                    Nieuwe laadpaal
+
+                                </a>
+
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% block content %}
         {% endblock %}
 
     </div>
 
 </div>
 
+<!-- Bootstrap -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Ctrl + F -->
+
+<script>
+
+document.addEventListener("keydown", function(e){
+
+    if(e.ctrlKey && e.key.toLowerCase() === "f"){
+
+        e.preventDefault();
+
+        const search = document.getElementById("globalSearch");
+
+        search.focus();
+        search.select();
+
+    }
+
+});
+
+</script>
+
 </body>
+
 </html>

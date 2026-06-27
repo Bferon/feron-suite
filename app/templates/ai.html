@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block title %}AI Calculator{% endblock %}
+
+{% block content %}
+
+<div class="row">
+
+    <div class="col-lg-8">
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <h4 class="mb-0">
+                    🧠 AI Calculator
+                </h4>
+
+            </div>
+
+            <div class="card-body">
+
+                <p class="text-muted">
+
+                    Beschrijf de werkzaamheden zo uitgebreid mogelijk.
+
+                </p>
+
+                <textarea
+                    class="form-control"
+                    rows="12"
+                    placeholder="Bijvoorbeeld:
+
+Vervangen groepenkast.
+
+Nieuwe Schneider groepenkast.
+
+12 groepen.
+
+3 aardlekschakelaars.
+
+2 krachtgroepen.
+
+Perilex aansluiten.
+
+Kabels liggen al.
+
+2 monteurs.
+
+1 werkdag.
+
+"></textarea>
+
+                <div class="mt-4">
+
+                    <button class="btn btn-primary btn-lg">
+
+                        Analyseer werkzaamheden
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-4">
+
+        <div class="card">
+
+            <div class="card-header">
+
+                Resultaat
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="alert alert-secondary">
+
+                    Hier verschijnt straks:
+
+                    <hr>
+
+                    ✔ Werkzaamheden
+
+                    <br>
+
+                    ✔ Materialen
+
+                    <br>
+
+                    ✔ Arbeid
+
+                    <br>
+
+                    ✔ Marktconforme verkoopprijs
+
+                    <br>
+
+                    ✔ Advies
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

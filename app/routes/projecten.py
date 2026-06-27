@@ -16,6 +16,7 @@ async def projecten(
     request: Request,
     db: Session = Depends(get_db),
 ):
+
     projecten = (
         db.query(Project)
         .filter(Project.actief == True)

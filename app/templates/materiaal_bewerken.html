@@ -1,0 +1,225 @@
+{% extends "base.html" %}
+
+{% block title %}Materiaal bewerken{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-lg-8">
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <h4 class="mb-0">
+
+                    Materiaal bewerken
+
+                </h4>
+
+            </div>
+
+            <div class="card-body">
+
+                <form method="post">
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+
+                            <label class="form-label">
+
+                                Categorie
+
+                            </label>
+
+                            <select
+                                class="form-select"
+                                name="categorie">
+
+                                {% for categorie in categorieen %}
+
+                                <option
+                                    value="{{ categorie }}"
+                                    {% if categorie == materiaal.categorie %}selected{% endif %}>
+
+                                    {{ categorie }}
+
+                                </option>
+
+                                {% endfor %}
+
+                            </select>
+
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+
+                            <label class="form-label">
+
+                                Merk
+
+                            </label>
+
+                            <input
+                                class="form-control"
+                                name="merk"
+                                value="{{ materiaal.merk }}">
+
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+
+                            <label class="form-label">
+
+                                Artikelnummer
+
+                            </label>
+
+                            <input
+                                class="form-control"
+                                name="artikelnummer"
+                                value="{{ materiaal.artikelnummer }}">
+
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+
+                            <label class="form-label">
+
+                                Leverancier
+
+                            </label>
+
+                            <input
+                                class="form-control"
+                                name="leverancier"
+                                value="{{ materiaal.leverancier }}">
+
+                        </div>
+
+                        <div class="col-12 mb-3">
+
+                            <label class="form-label">
+
+                                Omschrijving
+
+                            </label>
+
+                            <input
+                                class="form-control"
+                                name="omschrijving"
+                                value="{{ materiaal.omschrijving }}"
+                                required>
+
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+
+                            <label class="form-label">
+
+                                Inkoopprijs
+
+                            </label>
+
+                            <input
+                                type="number"
+                                step="0.01"
+                                class="form-control"
+                                name="inkoopprijs"
+                                value="{{ materiaal.inkoopprijs }}">
+
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+
+                            <label class="form-label">
+
+                                Verkoopprijs
+
+                            </label>
+
+                            <input
+                                type="number"
+                                step="0.01"
+                                class="form-control"
+                                name="verkoopprijs"
+                                value="{{ materiaal.verkoopprijs }}">
+
+                        </div>
+
+                        <div class="col-md-2 mb-3">
+
+                            <label class="form-label">
+
+                                Eenheid
+
+                            </label>
+
+                            <input
+                                class="form-control"
+                                name="eenheid"
+                                value="{{ materiaal.eenheid }}">
+
+                        </div>
+
+                        <div class="col-md-2 mb-3">
+
+                            <label class="form-label">
+
+                                Voorraad
+
+                            </label>
+
+                            <input
+                                class="form-control"
+                                type="number"
+                                name="voorraad"
+                                value="{{ materiaal.voorraad }}">
+
+                        </div>
+
+                    </div>
+
+                    <div class="mt-3 d-flex gap-2">
+
+                        <button class="btn btn-primary">
+
+                            <i class="bi bi-check-circle"></i>
+
+                            Opslaan
+
+                        </button>
+
+                        <a
+                            href="/materiaal/{{ materiaal.id }}/archiveer"
+                            class="btn btn-outline-danger">
+
+                            <i class="bi bi-archive"></i>
+
+                            Archiveren
+
+                        </a>
+
+                        <a
+                            href="/materialen"
+                            class="btn btn-secondary">
+
+                            Annuleren
+
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

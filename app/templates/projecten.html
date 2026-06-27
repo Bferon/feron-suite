@@ -6,7 +6,7 @@
 
 <h1 class="mb-4">📁 Projecten</h1>
 
-<div class="card shadow">
+<div class="card">
 
     <div class="card-body">
 
@@ -15,12 +15,12 @@
             <thead>
 
                 <tr>
-                    <th>Projectnummer</th>
-                    <th>Klant ID</th>
+                    <th>Projectnr.</th>
+                    <th>Klant</th>
                     <th>Project</th>
                     <th>Type</th>
                     <th>Status</th>
-                    <th>Actie</th>
+                    <th></th>
                 </tr>
 
             </thead>
@@ -33,23 +33,49 @@
 
                     <td>{{ project.projectnummer or "-" }}</td>
 
-                    <td>{{ project.klant_id }}</td>
+                    <td>{{ project.klant.naam }}</td>
 
                     <td>{{ project.naam }}</td>
 
                     <td>{{ project.type }}</td>
 
                     <td>
-                        <span class="badge bg-success">
-                            {{ project.status }}
-                        </span>
+
+                        {% if project.status == "Nieuw" %}
+
+                            <span class="badge bg-primary">
+                                {{ project.status }}
+                            </span>
+
+                        {% elif project.status == "In uitvoering" %}
+
+                            <span class="badge bg-warning text-dark">
+                                {{ project.status }}
+                            </span>
+
+                        {% elif project.status == "Gereed" %}
+
+                            <span class="badge bg-success">
+                                {{ project.status }}
+                            </span>
+
+                        {% else %}
+
+                            <span class="badge bg-secondary">
+                                {{ project.status }}
+                            </span>
+
+                        {% endif %}
+
                     </td>
 
                     <td>
 
                         <a href="/project/{{ project.id }}"
                            class="btn btn-primary btn-sm">
-                            👁 Open
+
+                            Open
+
                         </a>
 
                     </td>
@@ -57,20 +83,6 @@
                 </tr>
 
             {% endfor %}
-
-            {% if not projecten %}
-
-                <tr>
-
-                    <td colspan="6" class="text-center text-muted">
-
-                        Nog geen projecten gevonden.
-
-                    </td>
-
-                </tr>
-
-            {% endif %}
 
             </tbody>
 

@@ -1,26 +1,248 @@
 {% extends "base.html" %}
 
-{% block title %}
-Dashboard
-{% endblock %}
+{% block title %}Dashboard{% endblock %}
 
 {% block content %}
 
-<h1 class="mb-4">
-    Dashboard
-</h1>
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+
+        <h2 class="mb-1">
+            Welkom bij Feron Suite 👋
+        </h2>
+
+        <p class="text-muted mb-0">
+            Overzicht van jouw installatiebedrijf.
+        </p>
+
+    </div>
+
+    <div>
+
+        <a href="/project/nieuw" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i>
+            Nieuw project
+        </a>
+
+    </div>
+
+</div>
+
+<!-- Statistieken -->
+
+<div class="row g-4 mb-4">
+
+    <div class="col-xl-3 col-md-6">
+
+        <a href="/klanten" class="text-decoration-none">
+
+            <div class="card h-100">
+
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <div>
+
+                            <small class="text-muted">
+                                Actieve klanten
+                            </small>
+
+                            <h2 class="dashboard-number">
+                                {{ actieve_klanten }}
+                            </h2>
+
+                        </div>
+
+                        <i class="bi bi-people-fill fs-1 text-primary"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </a>
+
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+
+        <a href="/projecten" class="text-decoration-none">
+
+            <div class="card h-100">
+
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <div>
+
+                            <small class="text-muted">
+                                Projecten
+                            </small>
+
+                            <h2 class="dashboard-number">
+                                {{ actieve_projecten }}
+                            </h2>
+
+                        </div>
+
+                        <i class="bi bi-folder2-open fs-1 text-success"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </a>
+
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+
+        <div class="card h-100">
+
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between align-items-center">
+
+                    <div>
+
+                        <small class="text-muted">
+                            ESS Projecten
+                        </small>
+
+                        <h2 class="dashboard-number">
+                            {{ ess_projecten }}
+                        </h2>
+
+                    </div>
+
+                    <i class="bi bi-battery-charging fs-1 text-warning"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-xl-3 col-md-6">
+
+        <div class="card h-100">
+
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between align-items-center">
+
+                    <div>
+
+                        <small class="text-muted">
+                            Meterkasten
+                        </small>
+
+                        <h2 class="dashboard-number">
+                            {{ meterkast_projecten }}
+                        </h2>
+
+                    </div>
+
+                    <i class="bi bi-lightning-charge-fill fs-1 text-danger"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 <div class="row">
 
-    <div class="col-md-3">
+    <!-- Laatste projecten -->
 
-        <div class="card shadow">
+    <div class="col-lg-8">
+
+        <div class="card">
+
+            <div class="card-header d-flex justify-content-between align-items-center">
+
+                <span>
+                    <i class="bi bi-clock-history"></i>
+                    Laatste projecten
+                </span>
+
+                <a href="/projecten" class="btn btn-sm btn-outline-primary">
+                    Alles bekijken
+                </a>
+
+            </div>
 
             <div class="card-body">
 
-                <h5>👤 Klanten</h5>
+                <table class="table table-hover align-middle">
 
-                <h1>0</h1>
+                    <thead>
+
+                        <tr>
+
+                            <th>Projectnr.</th>
+                            <th>Klant</th>
+                            <th>Project</th>
+                            <th>Status</th>
+                            <th></th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    {% for project in laatste_projecten %}
+
+                        <tr>
+
+                            <td>{{ project.projectnummer or "-" }}</td>
+
+                            <td>{{ project.klant.naam }}</td>
+
+                            <td>{{ project.naam }}</td>
+
+                            <td>
+
+                                {% if project.status == "Nieuw" %}
+                                    <span class="badge bg-primary">{{ project.status }}</span>
+                                {% elif project.status == "In uitvoering" %}
+                                    <span class="badge bg-warning text-dark">{{ project.status }}</span>
+                                {% elif project.status == "Gereed" %}
+                                    <span class="badge bg-success">{{ project.status }}</span>
+                                {% else %}
+                                    <span class="badge bg-secondary">{{ project.status }}</span>
+                                {% endif %}
+
+                            </td>
+
+                            <td>
+
+                                <a href="/project/{{ project.id }}" class="btn btn-sm btn-primary">
+                                    Open
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
 
             </div>
 
@@ -28,47 +250,74 @@ Dashboard
 
     </div>
 
-    <div class="col-md-3">
+    <!-- Rechterkolom -->
 
-        <div class="card shadow">
+    <div class="col-lg-4">
 
-            <div class="card-body">
+        <div class="card mb-4">
 
-                <h5>📁 Projecten</h5>
+            <div class="card-header">
 
-                <h1>0</h1>
+                <i class="bi bi-lightning-charge"></i>
+                Snel starten
+
+            </div>
+
+            <div class="card-body d-grid gap-2">
+
+                <a href="/klanten" class="btn btn-outline-primary">
+                    <i class="bi bi-person-plus"></i>
+                    Nieuwe klant
+                </a>
+
+                <a href="/project/nieuw" class="btn btn-outline-primary">
+                    <i class="bi bi-folder-plus"></i>
+                    Nieuw project
+                </a>
+
+                <a href="/ess" class="btn btn-outline-primary">
+                    <i class="bi bi-battery-charging"></i>
+                    ESS Configurator
+                </a>
 
             </div>
 
         </div>
 
-    </div>
+        <div class="card">
 
-    <div class="col-md-3">
+            <div class="card-header">
 
-        <div class="card shadow">
-
-            <div class="card-body">
-
-                <h5>🔋 ESS</h5>
-
-                <h1>0</h1>
+                <i class="bi bi-graph-up-arrow"></i>
+                Installaties
 
             </div>
 
-        </div>
-
-    </div>
-
-    <div class="col-md-3">
-
-        <div class="card shadow">
-
             <div class="card-body">
 
-                <h5>📄 Offertes</h5>
+                <div class="d-flex justify-content-between mb-2">
 
-                <h1>0</h1>
+                    <span>ESS</span>
+
+                    <strong>{{ ess_projecten }}</strong>
+
+                </div>
+
+                <div class="d-flex justify-content-between mb-2">
+
+                    <span>Meterkasten</span>
+
+                    <strong>{{ meterkast_projecten }}</strong>
+
+                </div>
+
+                <div class="d-flex justify-content-between">
+
+                    <span>Laadpalen</span>
+
+                    <strong>{{ laadpaal_projecten }}</strong>
+
+                </div>
 
             </div>
 

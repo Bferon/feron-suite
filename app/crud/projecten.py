@@ -8,26 +8,35 @@ from app.models.project import Project
 def generate_projectnummer(db: Session):
     jaar = datetime.now().year
 
-    laatste_project = (
+    projecten = (
         db.query(Project)
-        .order_by(Project.id.desc())
-        .first()
+        .filter(Project.projectnummer.like(f"{jaar}-%"))
+        .all()
     )
 
-    if laatste_project and laatste_project.projectnummer:
-        try:
-            laatste_nummer = int(laatste_project.projectnummer.split("-")[1])
-        except Exception:
-            laatste_nummer = 0
-    else:
-        laatste_nummer = 0
+    hoogste_nummer = 0
 
-    nieuw_nummer = laatste_nummer + 1
+    for project in projecten:
+
+        if not project.projectnummer:
+            continue
+
+        try:
+            nummer = int(project.projectnummer.split("-")[1])
+
+            if nummer > hoogste_nummer:
+                hoogste_nummer = nummer
+
+        except (IndexError, ValueError):
+            continue
+
+    nieuw_nummer = hoogste_nummer + 1
 
     return f"{jaar}-{nieuw_nummer:04d}"
 
 
 def create_project(db: Session, data: dict):
+
     data["projectnummer"] = generate_projectnummer(db)
 
     project = Project(**data)
@@ -40,21 +49,39 @@ def create_project(db: Session, data: dict):
 
 
 def get_project(db: Session, project_id: int):
-    return db.query(Project).filter(Project.id == project_id).first()
+
+    return (
+        db.query(Project)
+        .filter(Project.id == project_id)
+        .first()
+    )
 
 
 def get_projecten_van_klant(db: Session, klant_id: int):
+
     return (
         db.query(Project)
         .filter(
             Project.klant_id == klant_id,
             Project.actief == True,
         )
+        .order_by(Project.projectnummer.desc())
+        .all()
+    )
+
+
+def get_alle_projecten(db: Session):
+
+    return (
+        db.query(Project)
+        .filter(Project.actief == True)
+        .order_by(Project.projectnummer.desc())
         .all()
     )
 
 
 def update_project(db: Session, project_id: int, data: dict):
+
     project = get_project(db, project_id)
 
     if not project:
@@ -70,6 +97,7 @@ def update_project(db: Session, project_id: int, data: dict):
 
 
 def archive_project(db: Session, project_id: int):
+
     project = get_project(db, project_id)
 
     if not project:
@@ -83,6 +111,7 @@ def archive_project(db: Session, project_id: int):
 
 
 def restore_project(db: Session, project_id: int):
+
     project = get_project(db, project_id)
 
     if not project:
