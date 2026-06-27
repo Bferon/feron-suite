@@ -3,6 +3,81 @@
 {% block title %}Projecten{% endblock %}
 
 {% block content %}
-<h1>📁 Projecten</h1>
-<p>Hier komt straks het projectbeheer.</p>
+
+<h1 class="mb-4">📁 Projecten</h1>
+
+<div class="card shadow">
+
+    <div class="card-body">
+
+        <table class="table table-hover align-middle">
+
+            <thead>
+
+                <tr>
+                    <th>Projectnummer</th>
+                    <th>Klant ID</th>
+                    <th>Project</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Actie</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for project in projecten %}
+
+                <tr>
+
+                    <td>{{ project.projectnummer or "-" }}</td>
+
+                    <td>{{ project.klant_id }}</td>
+
+                    <td>{{ project.naam }}</td>
+
+                    <td>{{ project.type }}</td>
+
+                    <td>
+                        <span class="badge bg-success">
+                            {{ project.status }}
+                        </span>
+                    </td>
+
+                    <td>
+
+                        <a href="/project/{{ project.id }}"
+                           class="btn btn-primary btn-sm">
+                            👁 Open
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            {% if not projecten %}
+
+                <tr>
+
+                    <td colspan="6" class="text-center text-muted">
+
+                        Nog geen projecten gevonden.
+
+                    </td>
+
+                </tr>
+
+            {% endif %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
 {% endblock %}
