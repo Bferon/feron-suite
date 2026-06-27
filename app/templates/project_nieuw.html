@@ -4,51 +4,59 @@
 
 {% block content %}
 
-<h1 class="mb-4">➕ Nieuw Project</h1>
+<h1 class="mb-4">Nieuw project</h1>
 
-<p class="text-muted">
-Kies welk type project je wilt starten.
-</p>
+<div class="card shadow">
 
-<div class="row">
+    <div class="card-body">
 
-    <div class="col-md-4 mb-4">
-        <div class="card shadow h-100">
-            <div class="card-body text-center">
-                <h2>🔋</h2>
-                <h4>ESS Systeem</h4>
-                <p>Victron • Dyness • Enphase</p>
-                <button class="btn btn-primary">
-                    Start ESS Project
-                </button>
+        <form method="post">
+
+            <input type="hidden" name="klant_id" value="{{ klant_id }}">
+
+            <div class="mb-3">
+                <label class="form-label">Projectnaam</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    name="naam"
+                    placeholder="Bijvoorbeeld: ESS Installatie"
+                    required>
             </div>
-        </div>
-    </div>
 
-    <div class="col-md-4 mb-4">
-        <div class="card shadow h-100">
-            <div class="card-body text-center">
-                <h2>⚡</h2>
-                <h4>Meterkast</h4>
-                <p>Nieuwe groepenkast</p>
-                <button class="btn btn-primary">
-                    Start Meterkast
-                </button>
-            </div>
-        </div>
-    </div>
+            <div class="mb-3">
+                <label class="form-label">Projecttype</label>
 
-    <div class="col-md-4 mb-4">
-        <div class="card shadow h-100">
-            <div class="card-body text-center">
-                <h2>🚗</h2>
-                <h4>Laadpaal</h4>
-                <p>Zaptec • Easee • Alfen</p>
-                <button class="btn btn-primary">
-                    Start Laadpaal
-                </button>
+                <select class="form-select" name="type">
+                    <option value="ESS">🔋 ESS Installatie</option>
+                    <option value="Meterkast">⚡ Meterkast</option>
+                    <option value="Laadpaal">🚗 Laadpaal</option>
+                    <option value="Service">🔧 Service</option>
+                    <option value="Verlichting">💡 Verlichting</option>
+                </select>
+
             </div>
-        </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">Status</label>
+
+                <select class="form-select" name="status">
+                    <option value="Nieuw">Nieuw</option>
+                    <option value="Offerte">Offerte</option>
+                    <option value="Gepland">Gepland</option>
+                    <option value="In uitvoering">In uitvoering</option>
+                    <option value="Gereed">Gereed</option>
+                </select>
+
+            </div>
+
+            <button class="btn btn-success">
+                Project opslaan
+            </button>
+
+        </form>
+
     </div>
 
 </div>

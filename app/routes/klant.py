@@ -19,6 +19,9 @@ async def klant_detail(
 ):
     klant = db.query(Klant).filter(Klant.id == klant_id).first()
 
+    if not klant:
+        return HTMLResponse("Klant niet gevonden", status_code=404)
+
     return templates.TemplateResponse(
         request=request,
         name="klant_detail.html",

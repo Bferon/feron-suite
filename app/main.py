@@ -3,6 +3,7 @@ from fastapi.staticfiles import StaticFiles
 
 from app.database import Base, engine
 
+from app.routes import project
 from app.routes import klant
 from app.routes import dashboard
 from app.routes import klanten
@@ -24,3 +25,4 @@ app.include_router(projecten.router)
 app.include_router(ess.router)
 app.include_router(project_nieuw.router)
 app.include_router(klant.router)
+app.include_router(project.router)

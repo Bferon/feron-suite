@@ -1,14 +1,19 @@
 {% extends "base.html" %}
 
-{% block title %}Klant{% endblock %}
+{% block title %}{{ klant.naam }}{% endblock %}
 
 {% block content %}
 
 <div class="d-flex justify-content-between align-items-center mb-4">
 
-    <h1>{{ klant.naam }}</h1>
+    <div>
+        <h1>{{ klant.naam }}</h1>
+        <p class="text-muted">
+            {{ klant.adres }} - {{ klant.plaats }}
+        </p>
+    </div>
 
-    <a href="/project/nieuw" class="btn btn-success">
+    <a href="/project/nieuw?klant_id={{ klant.id }}" class="btn btn-success">
         ➕ Nieuw project
     </a>
 
@@ -46,19 +51,62 @@
 
         <div class="card shadow">
 
-            <div class="card-header">
-                Projecten
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span>Projecten</span>
+
+                <a href="/project/nieuw?klant_id={{ klant.id }}" class="btn btn-primary btn-sm">
+                    ➕ Nieuw project
+                </a>
             </div>
 
             <div class="card-body">
 
-                <p class="text-muted">
-                    Er zijn nog geen projecten.
-                </p>
+                {% if klant.projecten %}
 
-                <a href="/project/nieuw" class="btn btn-primary">
-                    Eerste project aanmaken
-                </a>
+                <table class="table table-striped">
+
+                    <thead>
+
+                        <tr>
+                            <th>Naam</th>
+                            <th>Type</th>
+                            <th>Status</th>
+                            <th>Actie</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    {% for project in klant.projecten %}
+
+                        <tr>
+
+                            <td>{{ project.naam }}</td>
+                            <td>{{ project.type }}</td>
+                            <td>{{ project.status }}</td>
+
+                            <td>
+                                <a href="/project/{{ project.id }}" class="btn btn-primary btn-sm">
+                                    Open
+                                </a>
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+                {% else %}
+
+                <div class="alert alert-info">
+                    Nog geen projecten aangemaakt.
+                </div>
+
+                {% endif %}
 
             </div>
 
