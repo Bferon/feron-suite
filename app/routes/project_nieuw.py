@@ -1,3 +1,5 @@
+from typing import Optional
+
 from fastapi import APIRouter, Request, Depends, Form
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
@@ -14,7 +16,7 @@ templates = Jinja2Templates(directory="app/templates")
 @router.get("/project/nieuw", response_class=HTMLResponse)
 async def nieuw_project(
     request: Request,
-    klant_id: int,
+    klant_id: Optional[int] = None,
 ):
     return templates.TemplateResponse(
         request=request,

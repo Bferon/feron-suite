@@ -4,23 +4,59 @@
 
 {% block content %}
 
-<h1 class="mb-4">📁 Projecten</h1>
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+
+        <h1>📁 Projecten</h1>
+
+        <p class="text-muted mb-0">
+            Overzicht van alle actieve projecten.
+        </p>
+
+    </div>
+
+    <a href="/projecten/archief" class="btn btn-outline-secondary">
+
+        <i class="bi bi-archive"></i>
+
+        Projectarchief
+
+    </a>
+
+</div>
 
 <div class="card">
 
+    <div class="card-header d-flex justify-content-between align-items-center">
+
+        <span>
+
+            <i class="bi bi-folder2-open"></i>
+
+            Actieve projecten
+
+        </span>
+
+    </div>
+
     <div class="card-body">
+
+        {% if projecten %}
 
         <table class="table table-hover align-middle">
 
             <thead>
 
                 <tr>
+
                     <th>Projectnr.</th>
                     <th>Klant</th>
                     <th>Project</th>
                     <th>Type</th>
                     <th>Status</th>
-                    <th></th>
+                    <th class="text-end">Acties</th>
+
                 </tr>
 
             </thead>
@@ -31,52 +67,100 @@
 
                 <tr>
 
-                    <td>{{ project.projectnummer or "-" }}</td>
-
-                    <td>{{ project.klant.naam }}</td>
-
-                    <td>{{ project.naam }}</td>
-
-                    <td>{{ project.type }}</td>
-
                     <td>
 
-                        {% if project.status == "Nieuw" %}
-
-                            <span class="badge bg-primary">
-                                {{ project.status }}
-                            </span>
-
-                        {% elif project.status == "In uitvoering" %}
-
-                            <span class="badge bg-warning text-dark">
-                                {{ project.status }}
-                            </span>
-
-                        {% elif project.status == "Gereed" %}
-
-                            <span class="badge bg-success">
-                                {{ project.status }}
-                            </span>
-
-                        {% else %}
-
-                            <span class="badge bg-secondary">
-                                {{ project.status }}
-                            </span>
-
-                        {% endif %}
+                        {{ project.projectnummer or "-" }}
 
                     </td>
 
                     <td>
 
-                        <a href="/project/{{ project.id }}"
-                           class="btn btn-primary btn-sm">
+                        {{ project.klant.naam }}
 
-                            Open
+                    </td>
 
-                        </a>
+                    <td>
+
+                        {{ project.naam }}
+
+                    </td>
+
+                    <td>
+
+                        {{ project.type }}
+
+                    </td>
+
+                    <td>
+
+{% if project.status == "Nieuw" %}
+
+    <span class="badge badge-nieuw">
+        {{ project.status }}
+    </span>
+
+{% elif project.status == "Offerte" %}
+
+    <span class="badge badge-offerte">
+        {{ project.status }}
+    </span>
+
+{% elif project.status == "Gepland" %}
+
+    <span class="badge badge-gepland">
+        {{ project.status }}
+    </span>
+
+{% elif project.status == "In uitvoering" %}
+
+    <span class="badge badge-uitvoering">
+        {{ project.status }}
+    </span>
+
+{% elif project.status == "Gereed" %}
+
+    <span class="badge badge-gereed">
+        {{ project.status }}
+    </span>
+
+{% elif project.status == "Gefactureerd" %}
+
+    <span class="badge badge-gefactureerd">
+        {{ project.status }}
+    </span>
+
+{% else %}
+
+    <span class="badge badge-afgerond">
+        {{ project.status }}
+    </span>
+
+{% endif %}
+
+                    </td>
+
+                    <td class="text-end">
+
+                        <div class="btn-group">
+
+                            <a href="/project/{{ project.id }}"
+                               class="btn btn-primary btn-sm">
+
+                                <i class="bi bi-folder2-open"></i>
+                                Open
+
+                            </a>
+
+                            <a href="/projecten/{{ project.id }}/archiveer"
+                               class="btn btn-outline-danger btn-sm"
+                               onclick="return confirm('Weet je zeker dat je dit project wilt archiveren?');">
+
+                                <i class="bi bi-archive"></i>
+                                Archiveren
+
+                            </a>
+
+                        </div>
 
                     </td>
 
@@ -87,6 +171,18 @@
             </tbody>
 
         </table>
+
+        {% else %}
+
+        <div class="alert alert-info mb-0">
+
+            <i class="bi bi-info-circle"></i>
+
+            Er zijn momenteel geen actieve projecten.
+
+        </div>
+
+        {% endif %}
 
     </div>
 

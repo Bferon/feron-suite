@@ -1,0 +1,22 @@
+/*
+==========================================
+Feron Suite v0.7
+Footer
+==========================================
+*/
+
+.footer{
+
+    margin-top:auto;
+
+    padding:20px 30px;
+
+    border-top:1px solid var(--border);
+
+    background:var(--surface);
+
+    color:var(--text-light);
+
+    font-size:14px;
+
+}

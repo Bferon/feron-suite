@@ -1,0 +1,58 @@
+/*
+==========================================
+Feron Suite v0.7
+Buttons
+==========================================
+*/
+
+.btn{
+
+    border-radius:var(--radius);
+
+    transition:var(--transition);
+
+    font-weight:600;
+
+}
+
+.btn-primary{
+
+    background:var(--primary);
+
+    border-color:var(--primary);
+
+}
+
+.btn-primary:hover{
+
+    background:var(--primary-dark);
+
+    border-color:var(--primary-dark);
+
+    transform:translateY(-2px);
+
+}
+
+.btn-outline-primary{
+
+    border-color:var(--primary);
+
+    color:var(--primary);
+
+}
+
+.btn-outline-primary:hover{
+
+    background:var(--primary);
+
+    border-color:var(--primary);
+
+    color:white;
+
+}
+
+.btn-sm{
+
+    border-radius:8px;
+
+}

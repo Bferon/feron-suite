@@ -17,278 +17,38 @@
     <!-- Eigen CSS -->
     <link rel="stylesheet" href="/static/css/style.css">
 
+    {% block head %}
+    {% endblock %}
+
 </head>
 
 <body>
 
-<div class="d-flex">
+<div class="app-wrapper">
 
-    <!-- ===================== -->
-    <!-- SIDEBAR -->
-    <!-- ===================== -->
+    {% include "partials/sidebar.html" %}
 
-    <div class="sidebar">
+    <main class="content-wrapper">
 
-        <div class="text-center mb-4">
+        {% include "partials/topbar.html" %}
 
-            <a href="/">
-                <img
-                    src="/static/images/logo.png"
-                    alt="Installatiebedrijf Feron"
-                    class="img-fluid"
-                    style="max-width:85px;">
-            </a>
+        <div class="container-fluid py-4">
+
+            {% block content %}
+            {% endblock %}
 
         </div>
 
-        <!-- Dashboard -->
+        {% include "partials/footer.html" %}
 
-        <div class="menu-title">
-            Dashboard
-        </div>
-
-        <a href="/">
-            <i class="bi bi-house-door"></i>
-            Dashboard
-        </a>
-
-        <!-- CRM -->
-
-        <div class="menu-title">
-            CRM
-        </div>
-
-        <a href="/klanten">
-            <i class="bi bi-people"></i>
-            Klanten
-        </a>
-
-        <a href="/klanten/archief">
-            <i class="bi bi-archive"></i>
-            Archief
-        </a>
-
-        <a href="/projecten">
-            <i class="bi bi-folder2-open"></i>
-            Projecten
-        </a>
-
-        <!-- Calculatie -->
-
-        <div class="menu-title">
-            Calculatie
-        </div>
-
-        <a href="/ai">
-            <i class="bi bi-robot"></i>
-            AI Calculator
-        </a>
-
-        <a href="/materialen">
-            <i class="bi bi-box-seam"></i>
-            Materiaalbibliotheek
-            <a href="/materialen/archief">
-    <i class="bi bi-archive"></i>
-    Archief materialen
-</a>
-        </a>
-
-        <a href="#">
-            <i class="bi bi-file-earmark-text"></i>
-            Offertes
-        </a>
-
-        <!-- Installaties -->
-
-        <div class="menu-title">
-            Installaties
-        </div>
-
-        <a href="/ess">
-            <i class="bi bi-battery-charging"></i>
-            ESS
-        </a>
-
-        <a href="#">
-            <i class="bi bi-lightning-charge"></i>
-            Meterkasten
-        </a>
-
-        <a href="#">
-            <i class="bi bi-ev-front"></i>
-            Laadpalen
-        </a>
-
-        <!-- Service -->
-
-        <div class="menu-title">
-            Service
-        </div>
-
-        <a href="#">
-            <i class="bi bi-clipboard-check"></i>
-            IBS
-        </a>
-
-        <!-- Instellingen -->
-
-        <div class="menu-title">
-            Systeem
-        </div>
-
-        <a href="#">
-            <i class="bi bi-gear"></i>
-            Instellingen
-        </a>
-
-    </div>
-
-    <!-- ===================== -->
-    <!-- CONTENT -->
-    <!-- ===================== -->
-
-    <div class="content">
-
-        <!-- TOPBAR -->
-
-        <div class="topbar">
-
-            <div class="row align-items-center">
-
-                <div class="col">
-
-                    <input
-                        id="globalSearch"
-                        type="text"
-                        class="form-control"
-                        placeholder="Zoek klant, project of projectnummer... (Ctrl + F)">
-
-                </div>
-
-                <div class="col-auto">
-
-                    <div class="dropdown">
-
-                        <button
-                            class="btn btn-primary dropdown-toggle"
-                            data-bs-toggle="dropdown">
-
-                            <i class="bi bi-plus-circle"></i>
-                            Nieuw
-
-                        </button>
-
-                        <ul class="dropdown-menu dropdown-menu-end">
-
-                            <li>
-
-                                <a class="dropdown-item" href="/klanten">
-
-                                    <i class="bi bi-person-plus"></i>
-
-                                    Nieuwe klant
-
-                                </a>
-
-                            </li>
-
-                            <li>
-
-                                <a class="dropdown-item" href="/project/nieuw">
-
-                                    <i class="bi bi-folder-plus"></i>
-
-                                    Nieuw project
-
-                                </a>
-
-                            </li>
-
-                            <li>
-
-                                <a class="dropdown-item" href="/materialen">
-
-                                    <i class="bi bi-box-seam"></i>
-
-                                    Nieuw materiaal
-
-                                </a>
-
-                            </li>
-
-                            <li><hr class="dropdown-divider"></li>
-
-                            <li>
-
-                                <a class="dropdown-item" href="/ai">
-
-                                    <i class="bi bi-robot"></i>
-
-                                    AI Calculator
-
-                                </a>
-
-                            </li>
-
-                            <li>
-
-                                <a class="dropdown-item" href="/ess">
-
-                                    <i class="bi bi-battery-charging"></i>
-
-                                    Nieuwe ESS
-
-                                </a>
-
-                            </li>
-
-                            <li>
-
-                                <a class="dropdown-item" href="#">
-
-                                    <i class="bi bi-lightning-charge"></i>
-
-                                    Nieuwe meterkast
-
-                                </a>
-
-                            </li>
-
-                            <li>
-
-                                <a class="dropdown-item" href="#">
-
-                                    <i class="bi bi-ev-front"></i>
-
-                                    Nieuwe laadpaal
-
-                                </a>
-
-                            </li>
-
-                        </ul>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        {% block content %}
-        {% endblock %}
-
-    </div>
+    </main>
 
 </div>
 
 <!-- Bootstrap -->
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Ctrl + F -->
-
+<!-- Ctrl + F naar zoekbalk -->
 <script>
 
 document.addEventListener("keydown", function(e){
@@ -299,14 +59,24 @@ document.addEventListener("keydown", function(e){
 
         const search = document.getElementById("globalSearch");
 
-        search.focus();
-        search.select();
+        if(search){
+
+            search.focus();
+            search.select();
+
+        }
 
     }
 
 });
 
 </script>
+
+<!-- Live zoekfunctie -->
+<script src="/static/js/search.js"></script>
+
+{% block scripts %}
+{% endblock %}
 
 </body>
 

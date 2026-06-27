@@ -1,0 +1,84 @@
+/*
+==========================================
+Feron Suite v0.7
+Cards
+==========================================
+*/
+
+.card{
+
+    background:var(--surface);
+
+    border:none;
+
+    border-radius:var(--radius-lg);
+
+    box-shadow:var(--shadow);
+
+    transition:var(--transition);
+
+    overflow:hidden;
+
+}
+
+.card:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:var(--shadow-lg);
+
+}
+
+.card-header{
+
+    background:var(--surface);
+
+    border-bottom:1px solid var(--border);
+
+    padding:18px 22px;
+
+    font-weight:700;
+
+    color:var(--text);
+
+}
+
+.card-body{
+
+    padding:24px;
+
+}
+
+.card-footer{
+
+    background:var(--surface);
+
+    border-top:1px solid var(--border);
+
+    padding:18px 22px;
+
+}
+
+.dashboard-number{
+
+    margin-top:6px;
+
+    margin-bottom:0;
+
+    font-size:36px;
+
+    font-weight:700;
+
+    color:var(--primary);
+
+}
+
+.card-icon{
+
+    font-size:42px;
+
+    color:var(--primary);
+
+    opacity:.9;
+
+}

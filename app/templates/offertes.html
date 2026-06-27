@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+
+{% block title %}Offertes{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+
+        <h2 class="mb-1">
+            📄 Offertes
+        </h2>
+
+        <p class="text-muted mb-0">
+            Overzicht van alle offertes.
+        </p>
+
+    </div>
+
+    <a href="#" class="btn btn-primary">
+
+        <i class="bi bi-plus-circle"></i>
+
+        Nieuwe offerte
+
+    </a>
+
+</div>
+
+<div class="card">
+
+    <div class="card-header">
+
+        <i class="bi bi-file-earmark-text"></i>
+
+        Offertes
+
+    </div>
+
+    <div class="card-body">
+
+        {% if offertes %}
+
+        <table class="table table-hover align-middle">
+
+            <thead>
+
+                <tr>
+
+                    <th>Offertenr.</th>
+                    <th>Klant</th>
+                    <th>Project</th>
+                    <th>Datum</th>
+                    <th>Status</th>
+                    <th class="text-end">Totaal</th>
+                    <th></th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for offerte in offertes %}
+
+                <tr>
+
+                    <td>
+
+                        {{ offerte.offertenummer }}
+
+                    </td>
+
+                    <td>
+
+                        {{ offerte.klant.naam }}
+
+                    </td>
+
+                    <td>
+
+                        {{ offerte.project.projectnummer }}
+
+                    </td>
+
+                    <td>
+
+                        {{ offerte.datum }}
+
+                    </td>
+
+                    <td>
+
+                        {% if offerte.status == "Concept" %}
+
+                            <span class="badge badge-nieuw">
+                                {{ offerte.status }}
+                            </span>
+
+                        {% elif offerte.status == "Verzonden" %}
+
+                            <span class="badge badge-gepland">
+                                {{ offerte.status }}
+                            </span>
+
+                        {% elif offerte.status == "Geaccepteerd" %}
+
+                            <span class="badge badge-gereed">
+                                {{ offerte.status }}
+                            </span>
+
+                        {% elif offerte.status == "Afgewezen" %}
+
+                            <span class="badge badge-afgerond">
+                                {{ offerte.status }}
+                            </span>
+
+                        {% else %}
+
+                            <span class="badge bg-secondary">
+                                {{ offerte.status }}
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+                    <td class="text-end">
+
+                        € {{ "%.2f"|format(offerte.totaal or 0) }}
+
+                    </td>
+
+                    <td>
+
+                        <a
+                            href="/offerte/{{ offerte.id }}"
+                            class="btn btn-primary btn-sm">
+
+                            Open
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        {% else %}
+
+        <div class="alert alert-info mb-0">
+
+            Er zijn nog geen offertes aangemaakt.
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

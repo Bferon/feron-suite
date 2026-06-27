@@ -1,0 +1,71 @@
+/*
+==========================================
+Feron Suite v0.7
+Base Layout
+==========================================
+*/
+
+*{
+    box-sizing:border-box;
+}
+
+html,
+body{
+
+    height:100%;
+
+}
+
+body{
+
+    margin:0;
+
+    background:var(--background);
+
+    color:var(--text);
+
+    font-family:var(--font-family);
+
+}
+
+.app-wrapper{
+
+    display:flex;
+
+    min-height:100vh;
+
+}
+
+.content-wrapper{
+
+    flex:1;
+
+    margin-left:var(--sidebar-width);
+
+    display:flex;
+
+    flex-direction:column;
+
+    min-height:100vh;
+
+}
+
+.container-fluid{
+
+    flex:1;
+
+}
+
+a{
+
+    text-decoration:none;
+
+}
+
+img{
+
+    max-width:100%;
+
+    display:block;
+
+}

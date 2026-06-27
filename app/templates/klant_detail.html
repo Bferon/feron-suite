@@ -7,39 +7,74 @@
 <div class="d-flex justify-content-between align-items-center mb-4">
 
     <div>
-        <h1>{{ klant.naam }}</h1>
-        <p class="text-muted">
-            {{ klant.adres }} - {{ klant.plaats }}
+
+        <h1 class="mb-1">
+            {{ klant.naam }}
+        </h1>
+
+        <p class="text-muted mb-0">
+            {{ klant.adres }} • {{ klant.postcode }} {{ klant.plaats }}
         </p>
+
     </div>
 
     <a href="/project/nieuw?klant_id={{ klant.id }}" class="btn btn-success">
-        ➕ Nieuw project
+        <i class="bi bi-plus-circle"></i>
+        Nieuw project
     </a>
 
 </div>
 
 <div class="row">
 
-    <div class="col-md-4">
+    <!-- Klantgegevens -->
 
-        <div class="card shadow mb-4">
+    <div class="col-lg-4">
+
+        <div class="card mb-4">
 
             <div class="card-header">
+
+                <i class="bi bi-person-fill"></i>
                 Klantgegevens
+
             </div>
 
             <div class="card-body">
 
-                <p><strong>Adres</strong><br>{{ klant.adres }}</p>
+                <table class="table table-borderless mb-0">
 
-                <p><strong>Postcode</strong><br>{{ klant.postcode }}</p>
+                    <tr>
+                        <th>Naam</th>
+                        <td>{{ klant.naam }}</td>
+                    </tr>
 
-                <p><strong>Plaats</strong><br>{{ klant.plaats }}</p>
+                    <tr>
+                        <th>Adres</th>
+                        <td>{{ klant.adres }}</td>
+                    </tr>
 
-                <p><strong>Telefoon</strong><br>{{ klant.telefoon }}</p>
+                    <tr>
+                        <th>Postcode</th>
+                        <td>{{ klant.postcode }}</td>
+                    </tr>
 
-                <p><strong>E-mail</strong><br>{{ klant.email }}</p>
+                    <tr>
+                        <th>Plaats</th>
+                        <td>{{ klant.plaats }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Telefoon</th>
+                        <td>{{ klant.telefoon or "-" }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>E-mail</th>
+                        <td>{{ klant.email or "-" }}</td>
+                    </tr>
+
+                </table>
 
             </div>
 
@@ -47,49 +82,108 @@
 
     </div>
 
-    <div class="col-md-8">
+    <!-- Projecten -->
 
-        <div class="card shadow">
+    <div class="col-lg-8">
+
+        <div class="card">
 
             <div class="card-header d-flex justify-content-between align-items-center">
-                <span>Projecten</span>
 
-                <a href="/project/nieuw?klant_id={{ klant.id }}" class="btn btn-primary btn-sm">
-                    ➕ Nieuw project
+                <span>
+
+                    <i class="bi bi-folder2-open"></i>
+                    Projecten
+
+                </span>
+
+                <a href="/project/nieuw?klant_id={{ klant.id }}"
+                   class="btn btn-primary btn-sm">
+
+                    <i class="bi bi-plus-circle"></i>
+                    Nieuw project
+
                 </a>
+
             </div>
 
             <div class="card-body">
 
-                {% if klant.projecten %}
+                {% if projecten %}
 
-                <table class="table table-striped">
+                <table class="table table-hover align-middle">
 
                     <thead>
 
                         <tr>
+
+                            <th>Projectnr.</th>
                             <th>Naam</th>
                             <th>Type</th>
                             <th>Status</th>
-                            <th>Actie</th>
+                            <th></th>
+
                         </tr>
 
                     </thead>
 
                     <tbody>
 
-                    {% for project in klant.projecten %}
+                    {% for project in projecten %}
 
                         <tr>
 
-                            <td>{{ project.naam }}</td>
-                            <td>{{ project.type }}</td>
-                            <td>{{ project.status }}</td>
+                            <td>
+
+                                {{ project.projectnummer or "-" }}
+
+                            </td>
 
                             <td>
-                                <a href="/project/{{ project.id }}" class="btn btn-primary btn-sm">
+
+                                {{ project.naam }}
+
+                            </td>
+
+                            <td>
+
+                                {{ project.type }}
+
+                            </td>
+
+                            <td>
+
+                                {% if project.status == "Nieuw" %}
+                                    <span class="badge bg-primary">{{ project.status }}</span>
+
+                                {% elif project.status == "Offerte" %}
+                                    <span class="badge bg-info">{{ project.status }}</span>
+
+                                {% elif project.status == "Gepland" %}
+                                    <span class="badge bg-warning text-dark">{{ project.status }}</span>
+
+                                {% elif project.status == "In uitvoering" %}
+                                    <span class="badge bg-danger">{{ project.status }}</span>
+
+                                {% elif project.status == "Gereed" %}
+                                    <span class="badge bg-success">{{ project.status }}</span>
+
+                                {% else %}
+                                    <span class="badge bg-secondary">{{ project.status }}</span>
+
+                                {% endif %}
+
+                            </td>
+
+                            <td class="text-end">
+
+                                <a href="/project/{{ project.id }}"
+                                   class="btn btn-sm btn-primary">
+
                                     Open
+
                                 </a>
+
                             </td>
 
                         </tr>
@@ -102,8 +196,12 @@
 
                 {% else %}
 
-                <div class="alert alert-info">
-                    Nog geen projecten aangemaakt.
+                <div class="alert alert-info mb-0">
+
+                    <i class="bi bi-info-circle"></i>
+
+                    Er zijn nog geen projecten voor deze klant.
+
                 </div>
 
                 {% endif %}

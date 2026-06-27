@@ -7,123 +7,80 @@
 <div class="d-flex justify-content-between align-items-center mb-4">
 
     <div>
-
-        <h2 class="mb-1">
-            Welkom bij Feron Suite 👋
-        </h2>
-
+        <h2 class="mb-1">Welkom bij Feron Suite 👋</h2>
         <p class="text-muted mb-0">
             Overzicht van jouw installatiebedrijf.
         </p>
-
     </div>
 
-    <div>
-
-        <a href="/project/nieuw" class="btn btn-primary">
-            <i class="bi bi-plus-circle"></i>
-            Nieuw project
-        </a>
-
-    </div>
+    <a href="/project/nieuw" class="btn btn-primary">
+        <i class="bi bi-plus-circle"></i>
+        Nieuw project
+    </a>
 
 </div>
 
-<!-- Statistieken -->
-
 <div class="row g-4 mb-4">
 
-    <div class="col-xl-3 col-md-6">
+    <div class="col-xl-2 col-md-4">
 
-        <a href="/klanten" class="text-decoration-none">
-
-            <div class="card h-100">
-
-                <div class="card-body">
-
-                    <div class="d-flex justify-content-between align-items-center">
-
-                        <div>
-
-                            <small class="text-muted">
-                                Actieve klanten
-                            </small>
-
-                            <h2 class="dashboard-number">
-                                {{ actieve_klanten }}
-                            </h2>
-
-                        </div>
-
-                        <i class="bi bi-people-fill fs-1 text-primary"></i>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </a>
-
-    </div>
-
-    <div class="col-xl-3 col-md-6">
-
-        <a href="/projecten" class="text-decoration-none">
-
-            <div class="card h-100">
-
-                <div class="card-body">
-
-                    <div class="d-flex justify-content-between align-items-center">
-
-                        <div>
-
-                            <small class="text-muted">
-                                Projecten
-                            </small>
-
-                            <h2 class="dashboard-number">
-                                {{ actieve_projecten }}
-                            </h2>
-
-                        </div>
-
-                        <i class="bi bi-folder2-open fs-1 text-success"></i>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </a>
-
-    </div>
-
-    <div class="col-xl-3 col-md-6">
-
-        <div class="card h-100">
+        <div class="card text-center">
 
             <div class="card-body">
 
-                <div class="d-flex justify-content-between align-items-center">
+                <i class="bi bi-people fs-1 text-primary"></i>
 
-                    <div>
+                <h3 class="dashboard-number mt-2">
+                    {{ actieve_klanten }}
+                </h3>
 
-                        <small class="text-muted">
-                            ESS Projecten
-                        </small>
+                <small class="text-muted">
+                    Klanten
+                </small>
 
-                        <h2 class="dashboard-number">
-                            {{ ess_projecten }}
-                        </h2>
+            </div>
 
-                    </div>
+        </div>
 
-                    <i class="bi bi-battery-charging fs-1 text-warning"></i>
+    </div>
 
-                </div>
+    <div class="col-xl-2 col-md-4">
+
+        <div class="card text-center">
+
+            <div class="card-body">
+
+                <i class="bi bi-folder2-open fs-1 text-success"></i>
+
+                <h3 class="dashboard-number mt-2">
+                    {{ actieve_projecten }}
+                </h3>
+
+                <small class="text-muted">
+                    Projecten
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-xl-2 col-md-4">
+
+        <div class="card text-center">
+
+            <div class="card-body">
+
+                <i class="bi bi-file-earmark-text fs-1 text-warning"></i>
+
+                <h3 class="dashboard-number mt-2">
+                    {{ actieve_offertes }}
+                </h3>
+
+                <small class="text-muted">
+                    Offertes
+                </small>
 
             </div>
 
@@ -133,27 +90,41 @@
 
     <div class="col-xl-3 col-md-6">
 
-        <div class="card h-100">
+        <div class="card text-center">
 
             <div class="card-body">
 
-                <div class="d-flex justify-content-between align-items-center">
+                <i class="bi bi-box-seam fs-1 text-info"></i>
 
-                    <div>
+                <h3 class="dashboard-number mt-2">
+                    {{ aantal_materialen }}
+                </h3>
 
-                        <small class="text-muted">
-                            Meterkasten
-                        </small>
+                <small class="text-muted">
+                    Materialen
+                </small>
 
-                        <h2 class="dashboard-number">
-                            {{ meterkast_projecten }}
-                        </h2>
+            </div>
 
-                    </div>
+        </div>
 
-                    <i class="bi bi-lightning-charge-fill fs-1 text-danger"></i>
+    </div>
 
-                </div>
+    <div class="col-xl-3 col-md-6">
+
+        <div class="card text-center">
+
+            <div class="card-body">
+
+                <i class="bi bi-cash-stack fs-1 text-success"></i>
+
+                <h3 class="dashboard-number mt-2">
+                    € {{ "%.0f"|format(totale_offertewaarde) }}
+                </h3>
+
+                <small class="text-muted">
+                    Totale offertewaarde
+                </small>
 
             </div>
 
@@ -165,28 +136,21 @@
 
 <div class="row">
 
-    <!-- Laatste projecten -->
-
     <div class="col-lg-8">
 
-        <div class="card">
+        <div class="card mb-4">
 
-            <div class="card-header d-flex justify-content-between align-items-center">
+            <div class="card-header">
 
-                <span>
-                    <i class="bi bi-clock-history"></i>
-                    Laatste projecten
-                </span>
+                <i class="bi bi-folder2-open"></i>
 
-                <a href="/projecten" class="btn btn-sm btn-outline-primary">
-                    Alles bekijken
-                </a>
+                Laatste projecten
 
             </div>
 
             <div class="card-body">
 
-                <table class="table table-hover align-middle">
+                <table class="table table-hover">
 
                     <thead>
 
@@ -194,7 +158,6 @@
 
                             <th>Projectnr.</th>
                             <th>Klant</th>
-                            <th>Project</th>
                             <th>Status</th>
                             <th></th>
 
@@ -208,30 +171,19 @@
 
                         <tr>
 
-                            <td>{{ project.projectnummer or "-" }}</td>
+                            <td>{{ project.projectnummer }}</td>
 
                             <td>{{ project.klant.naam }}</td>
 
-                            <td>{{ project.naam }}</td>
+                            <td>{{ project.status }}</td>
 
                             <td>
 
-                                {% if project.status == "Nieuw" %}
-                                    <span class="badge bg-primary">{{ project.status }}</span>
-                                {% elif project.status == "In uitvoering" %}
-                                    <span class="badge bg-warning text-dark">{{ project.status }}</span>
-                                {% elif project.status == "Gereed" %}
-                                    <span class="badge bg-success">{{ project.status }}</span>
-                                {% else %}
-                                    <span class="badge bg-secondary">{{ project.status }}</span>
-                                {% endif %}
+                                <a href="/project/{{ project.id }}"
+                                   class="btn btn-primary btn-sm">
 
-                            </td>
-
-                            <td>
-
-                                <a href="/project/{{ project.id }}" class="btn btn-sm btn-primary">
                                     Open
+
                                 </a>
 
                             </td>
@@ -248,64 +200,95 @@
 
         </div>
 
-    </div>
-
-    <!-- Rechterkolom -->
-
-    <div class="col-lg-4">
-
-        <div class="card mb-4">
-
-            <div class="card-header">
-
-                <i class="bi bi-lightning-charge"></i>
-                Snel starten
-
-            </div>
-
-            <div class="card-body d-grid gap-2">
-
-                <a href="/klanten" class="btn btn-outline-primary">
-                    <i class="bi bi-person-plus"></i>
-                    Nieuwe klant
-                </a>
-
-                <a href="/project/nieuw" class="btn btn-outline-primary">
-                    <i class="bi bi-folder-plus"></i>
-                    Nieuw project
-                </a>
-
-                <a href="/ess" class="btn btn-outline-primary">
-                    <i class="bi bi-battery-charging"></i>
-                    ESS Configurator
-                </a>
-
-            </div>
-
-        </div>
-
         <div class="card">
 
             <div class="card-header">
 
-                <i class="bi bi-graph-up-arrow"></i>
-                Installaties
+                <i class="bi bi-file-earmark-text"></i>
+
+                Laatste offertes
 
             </div>
 
             <div class="card-body">
 
-                <div class="d-flex justify-content-between mb-2">
+                {% if laatste_offertes %}
 
-                    <span>ESS</span>
+                <table class="table table-hover">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Offertenr.</th>
+                            <th>Klant</th>
+                            <th>Status</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    {% for offerte in laatste_offertes %}
+
+                        <tr>
+
+                            <td>{{ offerte.offertenummer }}</td>
+
+                            <td>{{ offerte.klant.naam }}</td>
+
+                            <td>{{ offerte.status }}</td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+                {% else %}
+
+                <div class="alert alert-info mb-0">
+
+                    Nog geen offertes aanwezig.
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-4">
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <i class="bi bi-pie-chart"></i>
+
+                Projectverdeling
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between mb-3">
+
+                    <span>🔋 ESS</span>
 
                     <strong>{{ ess_projecten }}</strong>
 
                 </div>
 
-                <div class="d-flex justify-content-between mb-2">
+                <div class="d-flex justify-content-between mb-3">
 
-                    <span>Meterkasten</span>
+                    <span>⚡ Meterkasten</span>
 
                     <strong>{{ meterkast_projecten }}</strong>
 
@@ -313,7 +296,7 @@
 
                 <div class="d-flex justify-content-between">
 
-                    <span>Laadpalen</span>
+                    <span>🚗 Laadpalen</span>
 
                     <strong>{{ laadpaal_projecten }}</strong>
 

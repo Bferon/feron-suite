@@ -1,0 +1,170 @@
+<nav class="sidebar">
+
+    <div class="sidebar-header text-center">
+
+        <a href="/">
+            <img
+                src="/static/images/logo.png"
+                alt="Installatiebedrijf Feron"
+                class="img-fluid logo">
+        </a>
+
+        <h5 class="mt-3 mb-0">
+            Feron Suite
+        </h5>
+
+        <small class="text-muted">
+            v0.7
+        </small>
+
+    </div>
+
+    <div class="sidebar-menu">
+
+        <!-- Dashboard -->
+
+        <div class="menu-title">
+            Dashboard
+        </div>
+
+        <a href="/"
+           class="{% if request.url.path == '/' %}active{% endif %}">
+            <i class="bi bi-house-door"></i>
+            Dashboard
+        </a>
+
+        <!-- CRM -->
+
+        <div class="menu-title">
+            CRM
+        </div>
+
+        <a href="/klanten"
+           class="{% if request.url.path.startswith('/klanten') and request.url.path != '/klanten/archief' %}active{% endif %}">
+            <i class="bi bi-people"></i>
+            Klanten
+        </a>
+
+        <a href="/projecten"
+           class="{% if request.url.path.startswith('/projecten') and request.url.path != '/projecten/archief' %}active{% endif %}">
+            <i class="bi bi-folder2-open"></i>
+            Projecten
+        </a>
+
+        <!-- Archief -->
+
+        <div class="menu-title">
+            Archief
+        </div>
+
+        <a href="/klanten/archief"
+           class="{% if request.url.path == '/klanten/archief' %}active{% endif %}">
+            <i class="bi bi-person-x"></i>
+            Klantenarchief
+        </a>
+
+        <a href="/projecten/archief"
+           class="{% if request.url.path == '/projecten/archief' %}active{% endif %}">
+            <i class="bi bi-folder-x"></i>
+            Projectarchief
+        </a>
+
+        <!-- Verkoop -->
+
+        <div class="menu-title">
+            Verkoop
+        </div>
+
+        <a href="#">
+            <i class="bi bi-file-earmark-text"></i>
+            Offertes
+        </a>
+
+        <a href="#">
+            <i class="bi bi-receipt"></i>
+            Facturen
+        </a>
+
+        <!-- Magazijn -->
+
+        <div class="menu-title">
+            Magazijn
+        </div>
+
+        <a href="/materialen"
+           class="{% if request.url.path.startswith('/materialen') and request.url.path != '/materialen/archief' %}active{% endif %}">
+            <i class="bi bi-box-seam"></i>
+            Materialen
+        </a>
+
+        <a href="/materialen/archief"
+           class="{% if request.url.path == '/materialen/archief' %}active{% endif %}">
+            <i class="bi bi-archive"></i>
+            Materiaalarchief
+        </a>
+
+        <!-- Installaties -->
+
+        <div class="menu-title">
+            Installaties
+        </div>
+
+        <a href="/ess"
+           class="{% if request.url.path.startswith('/ess') %}active{% endif %}">
+            <i class="bi bi-battery-charging"></i>
+            ESS
+        </a>
+
+        <a href="#">
+            <i class="bi bi-lightning-charge"></i>
+            Meterkasten
+        </a>
+
+        <a href="#">
+            <i class="bi bi-ev-front"></i>
+            Laadpalen
+        </a>
+
+        <!-- Service -->
+
+        <div class="menu-title">
+            Service
+        </div>
+
+        <a href="#">
+            <i class="bi bi-calendar-week"></i>
+            Planning
+        </a>
+
+        <a href="#">
+            <i class="bi bi-clipboard-check"></i>
+            Werkbonnen
+        </a>
+
+        <!-- AI -->
+
+        <div class="menu-title">
+            AI
+
+        </div>
+
+        <a href="/ai"
+           class="{% if request.url.path.startswith('/ai') %}active{% endif %}">
+            <i class="bi bi-robot"></i>
+            AI Calculator
+        </a>
+
+        <!-- Systeem -->
+
+        <div class="menu-title">
+            Systeem
+        </div>
+
+        <a href="#">
+            <i class="bi bi-gear"></i>
+            Instellingen
+        </a>
+
+    </div>
+
+</nav>

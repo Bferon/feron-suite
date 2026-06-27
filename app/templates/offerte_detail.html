@@ -1,0 +1,273 @@
+{% extends "base.html" %}
+
+{% block title %}{{ offerte.offertenummer }}{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+
+        <h2 class="mb-1">
+            📄 {{ offerte.offertenummer }}
+        </h2>
+
+        <p class="text-muted mb-0">
+            {{ offerte.project.projectnummer }} - {{ offerte.project.naam }}
+        </p>
+
+    </div>
+
+    <div class="d-flex gap-2">
+
+        <a href="/project/{{ offerte.project.id }}"
+           class="btn btn-outline-secondary">
+
+            <i class="bi bi-arrow-left"></i>
+
+            Terug naar project
+
+        </a>
+
+        <a href="/offerte/{{ offerte.id }}/regel/nieuw"
+           class="btn btn-primary">
+
+            <i class="bi bi-printer"></i>
+
+            PDF
+
+        </a>
+
+    </div>
+
+</div>
+
+<div class="row g-4">
+
+    <div class="col-lg-4">
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <i class="bi bi-info-circle"></i>
+
+                Offertegegevens
+
+            </div>
+
+            <div class="card-body">
+
+                <table class="table table-borderless">
+
+                    <tr>
+                        <th>Offertenummer</th>
+                        <td>{{ offerte.offertenummer }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Klant</th>
+                        <td>{{ offerte.klant.naam }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Project</th>
+                        <td>{{ offerte.project.projectnummer }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Datum</th>
+                        <td>{{ offerte.datum }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Status</th>
+                        <td>
+
+                            {% if offerte.status == "Concept" %}
+                                <span class="badge badge-nieuw">
+                                    {{ offerte.status }}
+                                </span>
+
+                            {% elif offerte.status == "Verzonden" %}
+                                <span class="badge badge-gepland">
+                                    {{ offerte.status }}
+                                </span>
+
+                            {% elif offerte.status == "Geaccepteerd" %}
+                                <span class="badge badge-gereed">
+                                    {{ offerte.status }}
+                                </span>
+
+                            {% else %}
+                                <span class="badge badge-afgerond">
+                                    {{ offerte.status }}
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-8">
+
+        <div class="card">
+
+            <div class="card-header d-flex justify-content-between align-items-center">
+
+                <span>
+
+                    <i class="bi bi-list-ul"></i>
+
+                    Offerteregels
+
+                </span>
+
+                <a href="#"
+                   class="btn btn-primary btn-sm">
+
+                    <i class="bi bi-plus-circle"></i>
+
+                    Regel toevoegen
+
+                </a>
+
+            </div>
+
+            <div class="card-body">
+
+                {% if offerte.regels %}
+
+                <table class="table table-hover align-middle">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Omschrijving</th>
+                            <th class="text-center">Aantal</th>
+                            <th class="text-center">Eenheid</th>
+                            <th class="text-end">Prijs</th>
+                            <th class="text-end">Totaal</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    {% for regel in offerte.regels %}
+
+                        <tr>
+
+                            <td>{{ regel.omschrijving }}</td>
+
+                            <td class="text-center">
+                                {{ regel.aantal }}
+                            </td>
+
+                            <td class="text-center">
+                                {{ regel.eenheid }}
+                            </td>
+
+                            <td class="text-end">
+                                € {{ "%.2f"|format(regel.prijs) }}
+                            </td>
+
+                            <td class="text-end">
+                                € {{ "%.2f"|format(regel.totaal) }}
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+                {% else %}
+
+                <div class="alert alert-info mb-0">
+
+                    Nog geen offerteregels toegevoegd.
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        <div class="card mt-4">
+
+            <div class="card-body">
+
+                <div class="row">
+
+                    <div class="col-md-8"></div>
+
+                    <div class="col-md-4">
+
+                        <table class="table">
+
+                            <tr>
+
+                                <th>Subtotaal</th>
+
+                                <td class="text-end">
+
+                                    € {{ "%.2f"|format(offerte.subtotaal) }}
+
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <th>BTW</th>
+
+                                <td class="text-end">
+
+                                    € {{ "%.2f"|format(offerte.btw) }}
+
+                                </td>
+
+                            </tr>
+
+                            <tr class="table-primary">
+
+                                <th>Totaal</th>
+
+                                <th class="text-end">
+
+                                    € {{ "%.2f"|format(offerte.totaal) }}
+
+                                </th>
+
+                            </tr>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

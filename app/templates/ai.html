@@ -6,14 +6,16 @@
 
 <div class="row">
 
-    <div class="col-lg-8">
+    <div class="col-lg-7">
 
         <div class="card">
 
             <div class="card-header">
 
                 <h4 class="mb-0">
+
                     🧠 AI Calculator
+
                 </h4>
 
             </div>
@@ -26,10 +28,13 @@
 
                 </p>
 
-                <textarea
-                    class="form-control"
-                    rows="12"
-                    placeholder="Bijvoorbeeld:
+                <form method="post">
+
+                    <textarea
+                        class="form-control"
+                        name="omschrijving"
+                        rows="14"
+                        placeholder="Bijvoorbeeld:
 
 Vervangen groepenkast.
 
@@ -47,19 +52,21 @@ Kabels liggen al.
 
 2 monteurs.
 
-1 werkdag.
+1 werkdag.">{{ omschrijving if omschrijving else "" }}</textarea>
 
-"></textarea>
+                    <div class="mt-4">
 
-                <div class="mt-4">
+                        <button class="btn btn-primary btn-lg">
 
-                    <button class="btn btn-primary btn-lg">
+                            <i class="bi bi-robot"></i>
 
-                        Analyseer werkzaamheden
+                            Analyseer werkzaamheden
 
-                    </button>
+                        </button>
 
-                </div>
+                    </div>
+
+                </form>
 
             </div>
 
@@ -67,7 +74,7 @@ Kabels liggen al.
 
     </div>
 
-    <div class="col-lg-4">
+    <div class="col-lg-5">
 
         <div class="card">
 
@@ -79,31 +86,85 @@ Kabels liggen al.
 
             <div class="card-body">
 
-                <div class="alert alert-secondary">
+                {% if resultaat %}
 
-                    Hier verschijnt straks:
+                    <h6>📋 Werkzaamheden</h6>
+
+                    <ul>
+
+                        {% for item in resultaat.werkzaamheden %}
+
+                            <li>{{ item }}</li>
+
+                        {% endfor %}
+
+                    </ul>
 
                     <hr>
 
-                    ✔ Werkzaamheden
+                    <h6>📦 Materialen</h6>
 
-                    <br>
+                    <ul>
 
-                    ✔ Materialen
+                        {% for item in resultaat.materialen %}
 
-                    <br>
+                            <li>{{ item }}</li>
 
-                    ✔ Arbeid
+                        {% endfor %}
 
-                    <br>
+                    </ul>
 
-                    ✔ Marktconforme verkoopprijs
+                    <hr>
 
-                    <br>
+                    <h6>⏱ Arbeid</h6>
 
-                    ✔ Advies
+                    <p>
 
-                </div>
+                        {{ resultaat.arbeid }}
+
+                    </p>
+
+                    <hr>
+
+                    <h6>💰 Verkoopprijs</h6>
+
+                    <p>
+
+                        {{ resultaat.prijs }}
+
+                    </p>
+
+                    <hr>
+
+                    <h6>💡 Advies</h6>
+
+                    <ul>
+
+                        {% for item in resultaat.advies %}
+
+                            <li>{{ item }}</li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                {% else %}
+
+                    <div class="alert alert-secondary">
+
+                        <strong>Wat gaat de AI straks doen?</strong>
+
+                        <hr>
+
+                        ✅ Werkzaamheden herkennen<br>
+                        ✅ Materialen voorstellen<br>
+                        ✅ Arbeidsduur schatten<br>
+                        ✅ Marktconforme verkoopprijs berekenen<br>
+                        ✅ Advies en aandachtspunten tonen
+
+                    </div>
+
+                {% endif %}
 
             </div>
 

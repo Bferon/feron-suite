@@ -1,8 +1,276 @@
 {% extends "base.html" %}
 
-{% block title %}ESS{% endblock %}
+{% block title %}ESS Configurator{% endblock %}
 
 {% block content %}
-<h1>🔋 ESS Wizard</h1>
-<p>Hier bouwen we straks de Victron ESS Wizard.</p>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+
+        <h2 class="mb-1">
+            🔋 Victron ESS Configurator
+        </h2>
+
+        <p class="text-muted mb-0">
+            Ontwerp een compleet Victron ESS-systeem en genereer automatisch een materiaallijst.
+        </p>
+
+    </div>
+
+</div>
+
+<div class="row g-4">
+
+    <div class="col-lg-8">
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <i class="bi bi-lightning-charge"></i>
+
+                Basisgegevens
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+                            Netaansluiting
+                        </label>
+
+                        <select class="form-select">
+
+                            <option>1x25A</option>
+                            <option>1x35A</option>
+                            <option>3x25A</option>
+                            <option>3x35A</option>
+                            <option>3x50A</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+                            Jaarverbruik (kWh)
+                        </label>
+
+                        <input
+                            type="number"
+                            class="form-control"
+                            placeholder="3200">
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+                            Jaarlijkse teruglevering (kWh)
+                        </label>
+
+                        <input
+                            type="number"
+                            class="form-control"
+                            placeholder="4100">
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+                            PV-omvormer
+                        </label>
+
+                        <select class="form-select">
+
+                            <option>Enphase</option>
+                            <option>SolarEdge</option>
+                            <option>SMA</option>
+                            <option>Huawei</option>
+                            <option>Growatt</option>
+                            <option>Anders</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card mt-4">
+
+            <div class="card-header">
+
+                <i class="bi bi-battery-charging"></i>
+
+                Victron ESS
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+                            MultiPlus-II
+                        </label>
+
+                        <select class="form-select">
+
+                            <option>48/3000</option>
+                            <option selected>48/5000</option>
+                            <option>48/8000</option>
+                            <option>48/10000</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+                            Thuisaccu
+                        </label>
+
+                        <select class="form-select">
+
+                            <option>Dyness Powerbox G2</option>
+                            <option>Dyness Tower</option>
+                            <option>Pylontech</option>
+                            <option>BYD LVS</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <div class="form-check mt-4">
+
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                id="cerbo">
+
+                            <label
+                                class="form-check-label"
+                                for="cerbo">
+
+                                Cerbo GX
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <div class="form-check mt-4">
+
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                id="touch">
+
+                            <label
+                                class="form-check-label"
+                                for="touch">
+
+                                GX Touch
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <div class="form-check mt-4">
+
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                id="backup">
+
+                            <label
+                                class="form-check-label"
+                                for="backup">
+
+                                Noodstroom
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-4">
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <i class="bi bi-stars"></i>
+
+                AI Advies
+
+            </div>
+
+            <div class="card-body">
+
+                <p class="text-muted">
+
+                    Binnenkort berekent Feron Suite automatisch:
+
+                </p>
+
+                <ul class="mb-4">
+
+                    <li>Juiste accucapaciteit</li>
+                    <li>Geschikte MultiPlus-II</li>
+                    <li>Victron onderdelen</li>
+                    <li>Materiaallijst</li>
+                    <li>Verkoopprijs</li>
+                    <li>Terugverdientijd</li>
+
+                </ul>
+
+                <button class="btn btn-primary w-100" disabled>
+
+                    <i class="bi bi-magic"></i>
+
+                    Genereer ESS Advies
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
 {% endblock %}

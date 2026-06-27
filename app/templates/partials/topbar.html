@@ -1,0 +1,120 @@
+<div class="topbar">
+
+    <div class="row align-items-start">
+
+        <div class="col position-relative">
+
+            <input
+                id="globalSearch"
+                type="text"
+                class="form-control"
+                placeholder="Zoek klant, project, offerte of materiaal... (Ctrl + F)"
+                autocomplete="off">
+
+            <!-- Zoekresultaten -->
+            <div
+                id="searchResults"
+                class="card shadow position-absolute w-100 mt-1"
+                style="
+                    display:none;
+                    z-index:1050;
+                    max-height:500px;
+                    overflow-y:auto;
+                ">
+
+                <div class="list-group list-group-flush">
+
+                    <!-- Hier vult JavaScript straks de resultaten -->
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-auto">
+
+            <div class="dropdown">
+
+                <button
+                    class="btn btn-primary dropdown-toggle"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false">
+
+                    <i class="bi bi-plus-circle"></i>
+                    Nieuw
+
+                </button>
+
+                <ul class="dropdown-menu dropdown-menu-end">
+
+                    <li>
+                        <a class="dropdown-item" href="/klanten">
+                            <i class="bi bi-person-plus"></i>
+                            Nieuwe klant
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item" href="/project/nieuw">
+                            <i class="bi bi-folder-plus"></i>
+                            Nieuw project
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item" href="/materialen">
+                            <i class="bi bi-box-seam"></i>
+                            Nieuw materiaal
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item" href="/offertes">
+                            <i class="bi bi-file-earmark-text"></i>
+                            Offertes
+                        </a>
+                    </li>
+
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item" href="/ai">
+                            <i class="bi bi-robot"></i>
+                            AI Calculator
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item" href="/ess">
+                            <i class="bi bi-battery-charging"></i>
+                            ESS Calculator
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item" href="#">
+                            <i class="bi bi-lightning-charge"></i>
+                            Nieuwe meterkast
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item" href="#">
+                            <i class="bi bi-ev-front"></i>
+                            Nieuwe laadpaal
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

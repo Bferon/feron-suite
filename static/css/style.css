@@ -1,296 +1,63 @@
-body{
-    margin:0;
-    background:#eef2f7;
-    font-family:Arial, Helvetica, sans-serif;
-}
+/*
+==========================================
+Feron Suite v0.7
+Hoofd stylesheet
+==========================================
+*/
+
+/* Basis */
+@import url("layout/variables.css");
+@import url("layout/base.css");
+
+/* Layout */
+@import url("layout/sidebar.css");
+@import url("layout/topbar.css");
+@import url("layout/footer.css");
+
+/* Componenten */
+@import url("components/buttons.css");
+@import url("components/cards.css");
+@import url("components/forms.css");
+@import url("components/tables.css");
+
+/* Pagina's */
+@import url("pages/dashboard.css");
 
 /* =====================================
-   SIDEBAR
+   STATUS BADGES
 ===================================== */
 
-.sidebar{
-
-    width:220px;
-    height:100vh;
-
+.badge-nieuw{
     background:#0B3D91;
-
-    color:white;
-
-    position:fixed;
-
-    top:0;
-    left:0;
-
-    padding:12px;
-
-    display:flex;
-    flex-direction:column;
-
-    box-shadow:5px 0 20px rgba(0,0,0,.15);
-
+    color:#fff;
 }
 
-.sidebar img{
-
-    display:block;
-
-    margin:auto;
-
-    transition:.25s;
-
+.badge-offerte{
+    background:#8B5CF6;
+    color:#fff;
 }
 
-.sidebar img:hover{
-
-    transform:scale(1.05);
-
+.badge-gepland{
+    background:#F59E0B;
+    color:#fff;
 }
 
-.menu-title{
-
-    margin-top:16px;
-
-    margin-bottom:6px;
-
-    color:#AFCBFF;
-
-    font-size:11px;
-
-    text-transform:uppercase;
-
-    letter-spacing:1px;
-
-    font-weight:bold;
-
+.badge-uitvoering{
+    background:#EA580C;
+    color:#fff;
 }
 
-.sidebar a{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    color:white;
-
-    text-decoration:none;
-
-    padding:7px 10px;
-
-    border-radius:8px;
-
-    margin-bottom:2px;
-
-    font-size:14px;
-
-    transition:.2s;
-
+.badge-gereed{
+    background:#16A34A;
+    color:#fff;
 }
 
-.sidebar a i{
-
-    font-size:17px;
-
-    width:20px;
-
-    text-align:center;
-
+.badge-gefactureerd{
+    background:#374151;
+    color:#fff;
 }
 
-.sidebar a:hover{
-
-    background:rgba(255,255,255,.15);
-
-    color:white;
-
-    transform:translateX(3px);
-
-}
-
-.sidebar a.active{
-
-    background:white;
-
-    color:#0B3D91;
-
-    font-weight:bold;
-
-}
-
-/* =====================================
-   CONTENT
-===================================== */
-
-.content{
-
-    margin-left:240px;
-
-    padding:20px;
-
-}
-
-/* =====================================
-   TOPBAR
-===================================== */
-
-.topbar{
-
-    background:white;
-
-    border-radius:15px;
-
-    padding:15px 20px;
-
-    margin-bottom:20px;
-
-    box-shadow:0 6px 16px rgba(0,0,0,.08);
-
-}
-
-.topbar input{
-
-    border-radius:10px;
-
-}
-
-/* =====================================
-   CARDS
-===================================== */
-
-.card{
-
-    border:none;
-
-    border-radius:15px;
-
-    box-shadow:0 6px 16px rgba(0,0,0,.08);
-
-}
-
-.card-header{
-
-    background:white;
-
-    border-bottom:1px solid #ececec;
-
-    font-weight:bold;
-
-    border-radius:15px 15px 0 0 !important;
-
-}
-
-.card-body{
-
-    padding:25px;
-
-}
-
-/* =====================================
-   DASHBOARD
-===================================== */
-
-.dashboard-number{
-
-    font-size:34px;
-
-    font-weight:bold;
-
-    color:#0B3D91;
-
-}
-
-/* =====================================
-   BUTTONS
-===================================== */
-
-.btn{
-
-    border-radius:10px;
-
-    transition:.2s;
-
-}
-
-.btn:hover{
-
-    transform:translateY(-2px);
-
-}
-
-/* =====================================
-   TABLES
-===================================== */
-
-.table{
-
-    vertical-align:middle;
-
-}
-
-.table thead{
-
-    background:#f7f8fa;
-
-}
-
-.table-hover tbody tr:hover{
-
-    background:#eef5ff;
-
-}
-
-/* =====================================
-   BADGES
-===================================== */
-
-.badge{
-
-    border-radius:20px;
-
-    padding:7px 12px;
-
-}
-
-/* =====================================
-   RESPONSIVE
-===================================== */
-
-@media (max-width:992px){
-
-    .sidebar{
-
-        width:70px;
-
-    }
-
-    .sidebar .menu-title{
-
-        display:none;
-
-    }
-
-    .sidebar a{
-
-        justify-content:center;
-
-        font-size:0;
-
-    }
-
-    .sidebar a i{
-
-        font-size:20px;
-
-        margin:0;
-
-    }
-
-    .content{
-
-        margin-left:90px;
-
-    }
-
+.badge-afgerond{
+    background:#6B7280;
+    color:#fff;
 }

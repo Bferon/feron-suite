@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+
+{% block title %}Project bewerken{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+
+        <h2 class="mb-1">
+            Project bewerken
+        </h2>
+
+        <p class="text-muted mb-0">
+            {{ project.projectnummer }}
+        </p>
+
+    </div>
+
+    <a href="/project/{{ project.id }}" class="btn btn-outline-secondary">
+
+        <i class="bi bi-arrow-left"></i>
+
+        Terug
+
+    </a>
+
+</div>
+
+<div class="card">
+
+    <div class="card-header">
+
+        <i class="bi bi-pencil-square"></i>
+
+        Projectgegevens
+
+    </div>
+
+    <div class="card-body">
+
+        <form method="post">
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Projectnaam
+                    </label>
+
+                    <input
+                        type="text"
+                        name="naam"
+                        class="form-control"
+                        value="{{ project.naam }}"
+                        required>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Projecttype
+                    </label>
+
+                    <select
+                        name="type"
+                        class="form-select">
+
+                        <option value="ESS"
+                            {% if project.type=="ESS" %}selected{% endif %}>
+                            ESS
+                        </option>
+
+                        <option value="Meterkast"
+                            {% if project.type=="Meterkast" %}selected{% endif %}>
+                            Meterkast
+                        </option>
+
+                        <option value="Laadpaal"
+                            {% if project.type=="Laadpaal" %}selected{% endif %}>
+                            Laadpaal
+                        </option>
+
+                        <option value="Service"
+                            {% if project.type=="Service" %}selected{% endif %}>
+                            Service
+                        </option>
+
+                        <option value="Verlichting"
+                            {% if project.type=="Verlichting" %}selected{% endif %}>
+                            Verlichting
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">
+                        Status
+                    </label>
+
+                    <select
+                        name="status"
+                        class="form-select">
+
+                        {% for s in [
+                            "Nieuw",
+                            "Offerte",
+                            "Gepland",
+                            "In uitvoering",
+                            "Gereed",
+                            "Gefactureerd",
+                            "Afgerond"
+                        ] %}
+
+                        <option value="{{ s }}"
+                            {% if project.status==s %}selected{% endif %}>
+                            {{ s }}
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">
+                        Startdatum
+                    </label>
+
+                    <input
+                        type="date"
+                        name="startdatum"
+                        class="form-control"
+                        value="{{ project.startdatum if project.startdatum else '' }}">
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">
+                        Einddatum
+                    </label>
+
+                    <input
+                        type="date"
+                        name="einddatum"
+                        class="form-control"
+                        value="{{ project.einddatum if project.einddatum else '' }}">
+
+                </div>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Offertebedrag (€)
+                </label>
+
+                <input
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    name="offertebedrag"
+                    class="form-control"
+                    value="{{ project.offertebedrag or 0 }}">
+
+            </div>
+
+            <div class="mb-4">
+
+                <label class="form-label">
+                    Opmerkingen
+                </label>
+
+                <textarea
+                    name="opmerkingen"
+                    rows="6"
+                    class="form-control">{{ project.opmerkingen or "" }}</textarea>
+
+            </div>
+
+            <div class="d-flex justify-content-end gap-2">
+
+                <a href="/project/{{ project.id }}"
+                   class="btn btn-outline-secondary">
+
+                    Annuleren
+
+                </a>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+
+                    <i class="bi bi-check-circle"></i>
+
+                    Opslaan
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

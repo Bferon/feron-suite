@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}Materiaal toevoegen{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">
+    Materiaal toevoegen
+</h2>
+
+<div class="card shadow">
+
+    <div class="card-body">
+
+        <form method="post">
+
+            <div class="mb-3">
+
+                <label class="form-label">
+
+                    Materiaal
+
+                </label>
+
+                <select
+                    name="materiaal_id"
+                    class="form-select"
+                    required>
+
+                    {% for materiaal in materialen %}
+
+                        <option value="{{ materiaal.id }}">
+
+                            {{ materiaal.omschrijving }}
+                            (€ {{ "%.2f"|format(materiaal.verkoopprijs) }})
+
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">
+
+                    Aantal
+
+                </label>
+
+                <input
+                    type="number"
+                    name="aantal"
+                    value="1"
+                    min="1"
+                    step="0.1"
+                    class="form-control">
+
+            </div>
+
+            <button
+                class="btn btn-success">
+
+                Toevoegen
+
+            </button>
+
+            <a
+                href="/offerte/{{ offerte_id }}"
+                class="btn btn-secondary">
+
+                Annuleren
+
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
