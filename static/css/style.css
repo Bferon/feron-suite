@@ -1,63 +1,60 @@
 /*
-==========================================
-Feron Suite v0.7
+======================================================
+Feron Suite v0.8
 Hoofd stylesheet
-==========================================
+======================================================
 */
 
-/* Basis */
+/* ==========================================
+   GOOGLE FONT
+========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ==========================================
+   LAYOUT
+========================================== */
+
 @import url("layout/variables.css");
 @import url("layout/base.css");
-
-/* Layout */
 @import url("layout/sidebar.css");
 @import url("layout/topbar.css");
 @import url("layout/footer.css");
 
-/* Componenten */
+/* ==========================================
+   COMPONENTEN
+========================================== */
+
 @import url("components/buttons.css");
 @import url("components/cards.css");
 @import url("components/forms.css");
 @import url("components/tables.css");
+@import url("components/badges.css");
+@import url("components/modals.css");
+@import url("components/toasts.css");
 
-/* Pagina's */
+/* ==========================================
+   PAGINA'S
+========================================== */
+
 @import url("pages/dashboard.css");
 
-/* =====================================
-   STATUS BADGES
-===================================== */
+/* ==========================================
+   UTILITIES
+========================================== */
 
-.badge-nieuw{
-    background:#0B3D91;
-    color:#fff;
+.loading{
+    overflow:hidden;
 }
 
-.badge-offerte{
-    background:#8B5CF6;
-    color:#fff;
+.hidden{
+    display:none!important;
 }
 
-.badge-gepland{
-    background:#F59E0B;
-    color:#fff;
+.pointer{
+    cursor:pointer;
 }
 
-.badge-uitvoering{
-    background:#EA580C;
-    color:#fff;
-}
-
-.badge-gereed{
-    background:#16A34A;
-    color:#fff;
-}
-
-.badge-gefactureerd{
-    background:#374151;
-    color:#fff;
-}
-
-.badge-afgerond{
-    background:#6B7280;
-    color:#fff;
+.text-small{
+    font-size:.875rem;
 }

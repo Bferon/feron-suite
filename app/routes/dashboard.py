@@ -47,10 +47,11 @@ async def dashboard(
     )
 
     totale_offertewaarde = (
-        db.query(func.sum(Offerte.totaal))
-        .filter(Offerte.actief == True)
-        .scalar()
-        or 0
+    db.query(func.sum(Project.offertebedrag))
+    .filter(Project.actief == True)
+    .scalar()
+    or 0
+    
     )
 
     ess_projecten = (

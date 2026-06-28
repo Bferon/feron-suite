@@ -108,6 +108,69 @@ def update_offerte(db: Session, offerte_id: int, data: dict):
     return offerte
 
 
+def verzend_offerte(
+    db: Session,
+    offerte_id: int,
+):
+
+    offerte = get_offerte(
+        db,
+        offerte_id,
+    )
+
+    if not offerte:
+        return None
+
+    offerte.status = "Verzonden"
+
+    db.commit()
+    db.refresh(offerte)
+
+    return offerte
+
+
+def accepteer_offerte(
+    db: Session,
+    offerte_id: int,
+):
+
+    offerte = get_offerte(
+        db,
+        offerte_id,
+    )
+
+    if not offerte:
+        return None
+
+    offerte.status = "Geaccepteerd"
+
+    db.commit()
+    db.refresh(offerte)
+
+    return offerte
+
+
+def wijs_offerte_af(
+    db: Session,
+    offerte_id: int,
+):
+
+    offerte = get_offerte(
+        db,
+        offerte_id,
+    )
+
+    if not offerte:
+        return None
+
+    offerte.status = "Afgewezen"
+
+    db.commit()
+    db.refresh(offerte)
+
+    return offerte
+
+
 def archive_offerte(db: Session, offerte_id: int):
 
     offerte = get_offerte(db, offerte_id)

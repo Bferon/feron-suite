@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}Arbeid toevoegen{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">
+    Arbeid toevoegen
+</h2>
+
+<div class="card shadow">
+
+    <div class="card-body">
+
+        <form method="post">
+
+            <div class="mb-3">
+
+                <label class="form-label">
+
+                    Omschrijving
+
+                </label>
+
+                <input
+                    type="text"
+                    name="omschrijving"
+                    class="form-control"
+                    placeholder="Bijvoorbeeld: Installatie ESS"
+                    required>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <label class="form-label">
+
+                        Uren
+
+                    </label>
+
+                    <input
+                        type="number"
+                        name="uren"
+                        value="1"
+                        step="0.25"
+                        min="0"
+                        class="form-control"
+                        required>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <label class="form-label">
+
+                        Uurtarief
+
+                    </label>
+
+                    <input
+                        type="number"
+                        name="uurtarief"
+                        value="55"
+                        step="0.01"
+                        min="0"
+                        class="form-control"
+                        required>
+
+                </div>
+
+            </div>
+
+            <hr>
+
+            <button
+                type="submit"
+                class="btn btn-success">
+
+                <i class="bi bi-check-circle"></i>
+
+                Arbeid toevoegen
+
+            </button>
+
+            <a
+                href="/offerte/{{ offerte_id }}"
+                class="btn btn-secondary">
+
+                Annuleren
+
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

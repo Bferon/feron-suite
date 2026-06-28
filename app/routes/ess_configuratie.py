@@ -4,35 +4,35 @@ from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 
 from app.database import get_db
-from app.crud.offertes import get_offerte
+from app.crud.ess_configuratie import get_configuratie
 
 router = APIRouter()
 
 templates = Jinja2Templates(directory="app/templates")
 
 
-@router.get("/offerte/{offerte_id}", response_class=HTMLResponse)
-async def offerte_detail(
-    offerte_id: int,
+@router.get("/project/{project_id}/ess-configuratie", response_class=HTMLResponse)
+async def ess_configuratie(
+    project_id: int,
     request: Request,
     db: Session = Depends(get_db),
 ):
 
-    offerte = get_offerte(db, offerte_id)
+    configuratie = get_configuratie(
+        db,
+        project_id,
+    )
 
-    if not offerte:
+    if not configuratie:
         return HTMLResponse(
-            "Offerte niet gevonden.",
+            "Nog geen ESS configuratie gevonden.",
             status_code=404,
         )
 
     return templates.TemplateResponse(
         request=request,
-        name="offerte_detail.html",
+        name="ess_configuratie.html",
         context={
-            "offerte": offerte,
-            "kan_verzenden": offerte.status == "Concept",
-            "kan_accepteren": offerte.status == "Verzonden",
-            "kan_afwijzen": offerte.status == "Verzonden",
+            "configuratie": configuratie,
         },
     )

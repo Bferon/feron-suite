@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block title %}ESS Configuratie{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">
+    🔋 ESS Configuratie
+</h2>
+
+<div class="row">
+
+    <div class="col-lg-8">
+
+        <div class="card shadow">
+
+            <div class="card-header">
+
+                Hoofdcomponenten
+
+            </div>
+
+            <div class="card-body">
+
+                <table class="table">
+
+                    <tr>
+                        <th>MultiPlus</th>
+                        <td>{{ configuratie.multiplus or "-" }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Accu</th>
+                        <td>{{ configuratie.accu_type or "-" }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Accucapaciteit</th>
+                        <td>{{ configuratie.accu_capaciteit }} kWh</td>
+                    </tr>
+
+                    <tr>
+                        <th>Cerbo GX</th>
+                        <td>
+                            {% if configuratie.cerbo_gx %}
+                                ✅ Ja
+                            {% else %}
+                                ❌ Nee
+                            {% endif %}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>GX Touch</th>
+                        <td>
+                            {% if configuratie.gx_touch %}
+                                ✅ Ja
+                            {% else %}
+                                ❌ Nee
+                            {% endif %}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Energiemeter</th>
+                        <td>{{ configuratie.energiemeter or "-" }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Noodstroom</th>
+                        <td>
+                            {% if configuratie.noodstroom %}
+                                ✅ Ja
+                            {% else %}
+                                ❌ Nee
+                            {% endif %}
+                        </td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-4">
+
+        <div class="card shadow">
+
+            <div class="card-header">
+
+                Acties
+
+            </div>
+
+            <div class="card-body d-grid gap-2">
+
+                <a
+                    href="/project/{{ configuratie.project_id }}/ess"
+                    class="btn btn-primary">
+
+                    🔋 ESS Adviseur
+
+                </a>
+
+                <a
+                    href="#"
+                    class="btn btn-success">
+
+                    📦 Genereer materiaallijst
+
+                </a>
+
+                <a
+                    href="/project/{{ configuratie.project_id }}"
+                    class="btn btn-secondary">
+
+                    ↩ Terug naar project
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

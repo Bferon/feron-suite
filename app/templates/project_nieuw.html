@@ -4,58 +4,149 @@
 
 {% block content %}
 
-<h1 class="mb-4">Nieuw project</h1>
+<div class="row justify-content-center">
 
-<div class="card shadow">
+    <div class="col-lg-8">
 
-    <div class="card-body">
+        <div class="card shadow">
 
-        <form method="post">
+            <div class="card-header">
 
-            <input type="hidden" name="klant_id" value="{{ klant_id }}">
+                <h4 class="mb-0">
 
-            <div class="mb-3">
-                <label class="form-label">Projectnaam</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    name="naam"
-                    placeholder="Bijvoorbeeld: ESS Installatie"
-                    required>
-            </div>
+                    <i class="bi bi-folder-plus"></i>
 
-            <div class="mb-3">
-                <label class="form-label">Projecttype</label>
+                    Nieuw project
 
-                <select class="form-select" name="type">
-                    <option value="ESS">🔋 ESS Installatie</option>
-                    <option value="Meterkast">⚡ Meterkast</option>
-                    <option value="Laadpaal">🚗 Laadpaal</option>
-                    <option value="Service">🔧 Service</option>
-                    <option value="Verlichting">💡 Verlichting</option>
-                </select>
+                </h4>
 
             </div>
 
-            <div class="mb-3">
+            <div class="card-body">
 
-                <label class="form-label">Status</label>
+                <form method="post">
 
-                <select class="form-select" name="status">
-                    <option value="Nieuw">Nieuw</option>
-                    <option value="Offerte">Offerte</option>
-                    <option value="Gepland">Gepland</option>
-                    <option value="In uitvoering">In uitvoering</option>
-                    <option value="Gereed">Gereed</option>
-                </select>
+                    <div class="mb-3">
+
+                        <label class="form-label">
+
+                            Klant
+
+                        </label>
+
+                        <select
+                            class="form-select"
+                            name="klant_id"
+                            required>
+
+                            <option value="">
+                                -- Kies een klant --
+                            </option>
+
+                            {% for klant in klanten %}
+
+                                <option
+                                    value="{{ klant.id }}"
+                                    {% if klant.id == klant_id %}selected{% endif %}>
+
+                                    {{ klant.naam }}
+
+                                </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+
+                            Projectnaam
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="naam"
+                            placeholder="Bijvoorbeeld: ESS Installatie"
+                            required>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+
+                            Projecttype
+
+                        </label>
+
+                        <select
+                            class="form-select"
+                            name="type">
+
+                            <option value="ESS">🔋 ESS Installatie</option>
+                            <option value="Meterkast">⚡ Meterkast</option>
+                            <option value="Laadpaal">🚗 Laadpaal</option>
+                            <option value="Service">🔧 Service</option>
+                            <option value="Verlichting">💡 Verlichting</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+
+                            Status
+
+                        </label>
+
+                        <select
+                            class="form-select"
+                            name="status">
+
+                            <option value="Nieuw">Nieuw</option>
+                            <option value="Offerte">Offerte</option>
+                            <option value="Gepland">Gepland</option>
+                            <option value="In uitvoering">In uitvoering</option>
+                            <option value="Gereed">Gereed</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="d-flex gap-2">
+
+                        <button
+                            type="submit"
+                            class="btn btn-success">
+
+                            <i class="bi bi-check-circle"></i>
+
+                            Project opslaan
+
+                        </button>
+
+                        <a
+                            href="/projecten"
+                            class="btn btn-secondary">
+
+                            Annuleren
+
+                        </a>
+
+                    </div>
+
+                </form>
 
             </div>
 
-            <button class="btn btn-success">
-                Project opslaan
-            </button>
-
-        </form>
+        </div>
 
     </div>
 

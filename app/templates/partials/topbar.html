@@ -1,30 +1,46 @@
 <div class="topbar">
 
-    <div class="row align-items-start">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
 
-        <div class="col position-relative">
+        <!-- Linkerkant -->
+        <div class="d-flex align-items-center gap-3 flex-grow-1">
 
-            <input
-                id="globalSearch"
-                type="text"
-                class="form-control"
-                placeholder="Zoek klant, project, offerte of materiaal... (Ctrl + F)"
-                autocomplete="off">
+            <div>
+                <h4 class="mb-0 fw-bold">
+                    {% block page_title %}
+                    Dashboard
+                    {% endblock %}
+                </h4>
 
-            <!-- Zoekresultaten -->
-            <div
-                id="searchResults"
-                class="card shadow position-absolute w-100 mt-1"
-                style="
-                    display:none;
-                    z-index:1050;
-                    max-height:500px;
-                    overflow-y:auto;
-                ">
+                <small class="text-muted">
+                    Welkom in Feron Suite
+                </small>
+            </div>
 
-                <div class="list-group list-group-flush">
+            <!-- Zoekbalk -->
+            <div class="position-relative flex-grow-1">
 
-                    <!-- Hier vult JavaScript straks de resultaten -->
+                <input
+                    id="globalSearch"
+                    type="text"
+                    class="form-control"
+                    placeholder="Zoek klant, project, offerte of materiaal... (Ctrl + F)"
+                    autocomplete="off">
+
+                <!-- Zoekresultaten -->
+                <div
+                    id="searchResults"
+                    class="card shadow position-absolute w-100 mt-1"
+                    style="
+                        display:none;
+                        z-index:1050;
+                        max-height:500px;
+                        overflow-y:auto;
+                    ">
+
+                    <div class="list-group list-group-flush">
+                        <!-- JavaScript vult hier de resultaten -->
+                    </div>
 
                 </div>
 
@@ -32,15 +48,16 @@
 
         </div>
 
-        <div class="col-auto">
+        <!-- Rechterkant -->
+        <div class="d-flex align-items-center gap-2">
 
+            <!-- Nieuw -->
             <div class="dropdown">
 
                 <button
                     class="btn btn-primary dropdown-toggle"
                     type="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false">
+                    data-bs-toggle="dropdown">
 
                     <i class="bi bi-plus-circle"></i>
                     Nieuw
@@ -64,21 +81,26 @@
                     </li>
 
                     <li>
+                        <a class="dropdown-item" href="/offertes">
+                            <i class="bi bi-file-earmark-text"></i>
+                            Nieuwe offerte
+                        </a>
+                    </li>
+
+                    <li>
                         <a class="dropdown-item" href="/materialen">
                             <i class="bi bi-box-seam"></i>
                             Nieuw materiaal
                         </a>
                     </li>
 
-                    <li>
-                        <a class="dropdown-item" href="/offertes">
-                            <i class="bi bi-file-earmark-text"></i>
-                            Offertes
-                        </a>
-                    </li>
+                    <li><hr class="dropdown-divider"></li>
 
                     <li>
-                        <hr class="dropdown-divider">
+                        <a class="dropdown-item" href="/ess">
+                            <i class="bi bi-battery-charging"></i>
+                            ESS Berekening
+                        </a>
                     </li>
 
                     <li>
@@ -88,24 +110,65 @@
                         </a>
                     </li>
 
+                </ul>
+
+            </div>
+
+            <!-- Notificaties -->
+            <button class="btn btn-light position-relative">
+
+                <i class="bi bi-bell"></i>
+
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    3
+                </span>
+
+            </button>
+
+            <!-- Donkere modus (later) -->
+            <button
+                class="btn btn-light"
+                id="themeToggle"
+                title="Donkere modus">
+
+                <i class="bi bi-moon"></i>
+
+            </button>
+
+            <!-- Gebruiker -->
+            <div class="dropdown">
+
+                <button
+                    class="btn btn-outline-secondary dropdown-toggle"
+                    data-bs-toggle="dropdown">
+
+                    <i class="bi bi-person-circle"></i>
+                    Bryan
+
+                </button>
+
+                <ul class="dropdown-menu dropdown-menu-end">
+
                     <li>
-                        <a class="dropdown-item" href="/ess">
-                            <i class="bi bi-battery-charging"></i>
-                            ESS Calculator
+                        <a class="dropdown-item" href="#">
+                            <i class="bi bi-person"></i>
+                            Mijn profiel
                         </a>
                     </li>
 
                     <li>
-                        <a class="dropdown-item" href="#">
-                            <i class="bi bi-lightning-charge"></i>
-                            Nieuwe meterkast
+                        <a class="dropdown-item" href="/instellingen">
+                            <i class="bi bi-gear"></i>
+                            Instellingen
                         </a>
                     </li>
 
+                    <li><hr class="dropdown-divider"></li>
+
                     <li>
-                        <a class="dropdown-item" href="#">
-                            <i class="bi bi-ev-front"></i>
-                            Nieuwe laadpaal
+                        <a class="dropdown-item text-danger" href="/logout">
+                            <i class="bi bi-box-arrow-right"></i>
+                            Uitloggen
                         </a>
                     </li>
 

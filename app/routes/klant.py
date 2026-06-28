@@ -2,10 +2,12 @@ from fastapi import APIRouter, Request, Depends
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
+from sqlalchemy import func
 
 from app.database import get_db
 from app.models.klant import Klant
 from app.models.project import Project
+from app.models.offerte import Offerte
 
 router = APIRouter()
 
@@ -18,6 +20,7 @@ async def klant_detail(
     request: Request,
     db: Session = Depends(get_db),
 ):
+
     klant = (
         db.query(Klant)
         .filter(
@@ -43,11 +46,33 @@ async def klant_detail(
         .all()
     )
 
+    offertes = (
+        db.query(Offerte)
+        .filter(
+            Offerte.klant_id == klant.id,
+            Offerte.actief == True,
+        )
+        .order_by(Offerte.id.desc())
+        .all()
+    )
+
+    totale_projectwaarde = (
+        db.query(func.sum(Project.offertebedrag))
+        .filter(
+            Project.klant_id == klant.id,
+            Project.actief == True,
+        )
+        .scalar()
+        or 0
+    )
+
     return templates.TemplateResponse(
         request=request,
         name="klant_detail.html",
         context={
             "klant": klant,
             "projecten": projecten,
+            "offertes": offertes,
+            "totale_projectwaarde": totale_projectwaarde,
         },
     )

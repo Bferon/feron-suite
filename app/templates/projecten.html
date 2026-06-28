@@ -68,74 +68,74 @@
                 <tr>
 
                     <td>
-
                         {{ project.projectnummer or "-" }}
-
                     </td>
 
                     <td>
-
                         {{ project.klant.naam }}
-
                     </td>
 
                     <td>
-
                         {{ project.naam }}
-
                     </td>
 
                     <td>
-
                         {{ project.type }}
-
                     </td>
 
                     <td>
 
-{% if project.status == "Nieuw" %}
+                        {% set status = project.status|trim %}
 
-    <span class="badge badge-nieuw">
-        {{ project.status }}
-    </span>
+                        {% if status == "Nieuw" %}
 
-{% elif project.status == "Offerte" %}
+                            <span class="badge bg-primary">
+                                {{ status }}
+                            </span>
 
-    <span class="badge badge-offerte">
-        {{ project.status }}
-    </span>
+                        {% elif status == "Offerte" %}
 
-{% elif project.status == "Gepland" %}
+                            <span class="badge text-white" style="background:#8B5CF6;">
+                                {{ status }}
+                            </span>
 
-    <span class="badge badge-gepland">
-        {{ project.status }}
-    </span>
+                        {% elif status == "Gepland" %}
 
-{% elif project.status == "In uitvoering" %}
+                            <span class="badge bg-warning text-dark">
+                                {{ status }}
+                            </span>
 
-    <span class="badge badge-uitvoering">
-        {{ project.status }}
-    </span>
+                        {% elif status == "In uitvoering" %}
 
-{% elif project.status == "Gereed" %}
+                            <span class="badge text-white" style="background:#EA580C;">
+                                {{ status }}
+                            </span>
 
-    <span class="badge badge-gereed">
-        {{ project.status }}
-    </span>
+                        {% elif status == "Gereed" %}
 
-{% elif project.status == "Gefactureerd" %}
+                            <span class="badge bg-success">
+                                {{ status }}
+                            </span>
 
-    <span class="badge badge-gefactureerd">
-        {{ project.status }}
-    </span>
+                        {% elif status == "Gefactureerd" %}
 
-{% else %}
+                            <span class="badge bg-dark">
+                                {{ status }}
+                            </span>
 
-    <span class="badge badge-afgerond">
-        {{ project.status }}
-    </span>
+                        {% elif status == "Afgerond" %}
 
-{% endif %}
+                            <span class="badge bg-secondary">
+                                {{ status }}
+                            </span>
+
+                        {% else %}
+
+                            <span class="badge bg-info text-dark">
+                                {{ status }}
+                            </span>
+
+                        {% endif %}
 
                     </td>
 

@@ -8,9 +8,10 @@
 
     <div>
 
-        <h1 class="mb-1">
+        <h2 class="mb-1">
+            <i class="bi bi-person-circle"></i>
             {{ klant.naam }}
-        </h1>
+        </h2>
 
         <p class="text-muted mb-0">
             {{ klant.adres }} • {{ klant.postcode }} {{ klant.plaats }}
@@ -18,24 +19,119 @@
 
     </div>
 
-    <a href="/project/nieuw?klant_id={{ klant.id }}" class="btn btn-success">
-        <i class="bi bi-plus-circle"></i>
-        Nieuw project
-    </a>
+    <div class="d-flex gap-2">
+
+        <a href="/project/nieuw?klant_id={{ klant.id }}"
+           class="btn btn-success">
+
+            <i class="bi bi-folder-plus"></i>
+
+            Nieuw project
+
+        </a>
+
+    </div>
 
 </div>
 
-<div class="row">
 
-    <!-- Klantgegevens -->
+<!-- Statistieken -->
+
+<div class="row g-4 mb-4">
+
+    <div class="col-md-4">
+
+        <div class="card text-center">
+
+            <div class="card-body">
+
+                <i class="bi bi-folder2-open fs-1 text-primary"></i>
+
+                <h3 class="dashboard-number">
+
+                    {{ projecten|length }}
+
+                </h3>
+
+                <small class="text-muted">
+
+                    Projecten
+
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card text-center">
+
+            <div class="card-body">
+
+                <i class="bi bi-file-earmark-text fs-1 text-warning"></i>
+
+                <h3 class="dashboard-number">
+
+                    {{ offertes|length }}
+
+                </h3>
+
+                <small class="text-muted">
+
+                    Offertes
+
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card text-center">
+
+            <div class="card-body">
+
+                <i class="bi bi-cash-stack fs-1 text-success"></i>
+
+                <h3 class="dashboard-number">
+
+                    € {{ "%.0f"|format(totale_projectwaarde) }}
+
+                </h3>
+
+                <small class="text-muted">
+
+                    Totale projectwaarde
+
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="row g-4">
+
+    <!-- Linkerkolom -->
 
     <div class="col-lg-4">
 
-        <div class="card mb-4">
+        <div class="card">
 
             <div class="card-header">
 
                 <i class="bi bi-person-fill"></i>
+
                 Klantgegevens
 
             </div>
@@ -82,17 +178,18 @@
 
     </div>
 
-    <!-- Projecten -->
+    <!-- Rechterkolom -->
 
     <div class="col-lg-8">
 
-        <div class="card">
+        <div class="card mb-4">
 
             <div class="card-header d-flex justify-content-between align-items-center">
 
                 <span>
 
                     <i class="bi bi-folder2-open"></i>
+
                     Projecten
 
                 </span>
@@ -101,6 +198,7 @@
                    class="btn btn-primary btn-sm">
 
                     <i class="bi bi-plus-circle"></i>
+
                     Nieuw project
 
                 </a>
@@ -117,10 +215,11 @@
 
                         <tr>
 
-                            <th>Projectnr.</th>
-                            <th>Naam</th>
+                            <th>Nr.</th>
+                            <th>Project</th>
                             <th>Type</th>
                             <th>Status</th>
+                            <th class="text-end">Waarde</th>
                             <th></th>
 
                         </tr>
@@ -133,43 +232,31 @@
 
                         <tr>
 
-                            <td>
+                            <td>{{ project.projectnummer }}</td>
 
-                                {{ project.projectnummer or "-" }}
+                            <td>{{ project.naam }}</td>
 
-                            </td>
-
-                            <td>
-
-                                {{ project.naam }}
-
-                            </td>
-
-                            <td>
-
-                                {{ project.type }}
-
-                            </td>
+                            <td>{{ project.type }}</td>
 
                             <td>
 
                                 {% if project.status == "Nieuw" %}
-                                    <span class="badge bg-primary">{{ project.status }}</span>
+                                    <span class="badge badge-nieuw">{{ project.status }}</span>
 
                                 {% elif project.status == "Offerte" %}
-                                    <span class="badge bg-info">{{ project.status }}</span>
+                                    <span class="badge badge-offerte">{{ project.status }}</span>
 
                                 {% elif project.status == "Gepland" %}
-                                    <span class="badge bg-warning text-dark">{{ project.status }}</span>
+                                    <span class="badge badge-gepland">{{ project.status }}</span>
 
                                 {% elif project.status == "In uitvoering" %}
-                                    <span class="badge bg-danger">{{ project.status }}</span>
+                                    <span class="badge badge-uitvoering">{{ project.status }}</span>
 
                                 {% elif project.status == "Gereed" %}
-                                    <span class="badge bg-success">{{ project.status }}</span>
+                                    <span class="badge badge-gereed">{{ project.status }}</span>
 
                                 {% else %}
-                                    <span class="badge bg-secondary">{{ project.status }}</span>
+                                    <span class="badge badge-afgerond">{{ project.status }}</span>
 
                                 {% endif %}
 
@@ -177,8 +264,14 @@
 
                             <td class="text-end">
 
+                                € {{ "%.2f"|format(project.offertebedrag or 0) }}
+
+                            </td>
+
+                            <td class="text-end">
+
                                 <a href="/project/{{ project.id }}"
-                                   class="btn btn-sm btn-primary">
+                                   class="btn btn-primary btn-sm">
 
                                     Open
 
@@ -198,9 +291,85 @@
 
                 <div class="alert alert-info mb-0">
 
-                    <i class="bi bi-info-circle"></i>
+                    Nog geen projecten gevonden.
 
-                    Er zijn nog geen projecten voor deze klant.
+                </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <i class="bi bi-file-earmark-text"></i>
+
+                Offertes
+
+            </div>
+
+            <div class="card-body">
+
+                {% if offertes %}
+
+                <table class="table table-hover align-middle">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Offertenummer</th>
+                            <th>Status</th>
+                            <th class="text-end">Totaal</th>
+                            <th></th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    {% for offerte in offertes %}
+
+                        <tr>
+
+                            <td>{{ offerte.offertenummer }}</td>
+
+                            <td>{{ offerte.status }}</td>
+
+                            <td class="text-end">
+
+                                € {{ "%.2f"|format(offerte.totaal or 0) }}
+
+                            </td>
+
+                            <td class="text-end">
+
+                                <a href="/offerte/{{ offerte.id }}"
+                                   class="btn btn-outline-primary btn-sm">
+
+                                    Open
+
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+                {% else %}
+
+                <div class="alert alert-info mb-0">
+
+                    Er zijn nog geen offertes voor deze klant.
 
                 </div>
 

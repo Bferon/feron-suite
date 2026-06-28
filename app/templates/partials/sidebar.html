@@ -1,92 +1,96 @@
-<nav class="sidebar">
+<nav class="sidebar" id="sidebar">
 
+    <!-- Logo -->
     <div class="sidebar-header text-center">
 
-        <a href="/">
+        <a href="/" class="text-decoration-none">
             <img
-                src="/static/images/logo.png"
+                src="{{ url_for('static', path='images/logo.png') }}"
                 alt="Installatiebedrijf Feron"
                 class="img-fluid logo">
         </a>
 
-        <h5 class="mt-3 mb-0">
+        <h5 class="mt-3 mb-0 fw-bold">
             Feron Suite
         </h5>
 
         <small class="text-muted">
-            v0.7
+            Versie 0.8
         </small>
 
     </div>
 
+    <!-- Menu -->
     <div class="sidebar-menu">
 
         <!-- Dashboard -->
-
         <div class="menu-title">
             Dashboard
         </div>
 
         <a href="/"
+           aria-label="Dashboard"
            class="{% if request.url.path == '/' %}active{% endif %}">
             <i class="bi bi-house-door"></i>
-            Dashboard
+            <span>Dashboard</span>
         </a>
 
         <!-- CRM -->
-
         <div class="menu-title">
             CRM
         </div>
 
         <a href="/klanten"
+           aria-label="Klanten"
            class="{% if request.url.path.startswith('/klanten') and request.url.path != '/klanten/archief' %}active{% endif %}">
             <i class="bi bi-people"></i>
-            Klanten
+            <span>Klanten</span>
         </a>
 
         <a href="/projecten"
+           aria-label="Projecten"
            class="{% if request.url.path.startswith('/projecten') and request.url.path != '/projecten/archief' %}active{% endif %}">
             <i class="bi bi-folder2-open"></i>
-            Projecten
+            <span>Projecten</span>
         </a>
 
         <!-- Archief -->
-
         <div class="menu-title">
             Archief
         </div>
 
         <a href="/klanten/archief"
+           aria-label="Klantenarchief"
            class="{% if request.url.path == '/klanten/archief' %}active{% endif %}">
             <i class="bi bi-person-x"></i>
-            Klantenarchief
+            <span>Klantenarchief</span>
         </a>
 
         <a href="/projecten/archief"
+           aria-label="Projectarchief"
            class="{% if request.url.path == '/projecten/archief' %}active{% endif %}">
             <i class="bi bi-folder-x"></i>
-            Projectarchief
+            <span>Projectarchief</span>
         </a>
 
         <!-- Verkoop -->
-
         <div class="menu-title">
             Verkoop
         </div>
 
-        <a href="#">
+        <a href="/offertes"
+           class="{% if request.url.path.startswith('/offertes') %}active{% endif %}">
             <i class="bi bi-file-earmark-text"></i>
-            Offertes
+            <span>Offertes</span>
         </a>
 
-        <a href="#">
+        <a href="/facturen"
+           class="{% if request.url.path.startswith('/facturen') %}active{% endif %}">
             <i class="bi bi-receipt"></i>
-            Facturen
+            <span>Facturen</span>
         </a>
 
         <!-- Magazijn -->
-
         <div class="menu-title">
             Magazijn
         </div>
@@ -94,17 +98,16 @@
         <a href="/materialen"
            class="{% if request.url.path.startswith('/materialen') and request.url.path != '/materialen/archief' %}active{% endif %}">
             <i class="bi bi-box-seam"></i>
-            Materialen
+            <span>Materialen</span>
         </a>
 
         <a href="/materialen/archief"
            class="{% if request.url.path == '/materialen/archief' %}active{% endif %}">
             <i class="bi bi-archive"></i>
-            Materiaalarchief
+            <span>Materiaalarchief</span>
         </a>
 
         <!-- Installaties -->
-
         <div class="menu-title">
             Installaties
         </div>
@@ -112,58 +115,72 @@
         <a href="/ess"
            class="{% if request.url.path.startswith('/ess') %}active{% endif %}">
             <i class="bi bi-battery-charging"></i>
-            ESS
+            <span>ESS</span>
         </a>
 
-        <a href="#">
+        <a href="/meterkasten"
+           class="{% if request.url.path.startswith('/meterkasten') %}active{% endif %}">
             <i class="bi bi-lightning-charge"></i>
-            Meterkasten
+            <span>Meterkasten</span>
         </a>
 
-        <a href="#">
+        <a href="/laadpalen"
+           class="{% if request.url.path.startswith('/laadpalen') %}active{% endif %}">
             <i class="bi bi-ev-front"></i>
-            Laadpalen
+            <span>Laadpalen</span>
         </a>
 
         <!-- Service -->
-
         <div class="menu-title">
             Service
         </div>
 
-        <a href="#">
+        <a href="/planning"
+           class="{% if request.url.path.startswith('/planning') %}active{% endif %}">
             <i class="bi bi-calendar-week"></i>
-            Planning
+            <span>Planning</span>
         </a>
 
-        <a href="#">
+        <a href="/werkbonnen"
+           class="{% if request.url.path.startswith('/werkbonnen') %}active{% endif %}">
             <i class="bi bi-clipboard-check"></i>
-            Werkbonnen
+            <span>Werkbonnen</span>
         </a>
 
         <!-- AI -->
-
         <div class="menu-title">
             AI
-
         </div>
 
         <a href="/ai"
            class="{% if request.url.path.startswith('/ai') %}active{% endif %}">
             <i class="bi bi-robot"></i>
-            AI Calculator
+            <span>AI Calculator</span>
         </a>
 
         <!-- Systeem -->
-
         <div class="menu-title">
             Systeem
         </div>
 
-        <a href="#">
+        <a href="/instellingen"
+           class="{% if request.url.path.startswith('/instellingen') %}active{% endif %}">
             <i class="bi bi-gear"></i>
-            Instellingen
+            <span>Instellingen</span>
         </a>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="sidebar-footer text-center mt-auto py-3">
+
+        <small class="text-muted d-block">
+            Feron Suite
+        </small>
+
+        <small class="text-muted">
+            © 2026 Installatiebedrijf Feron
+        </small>
 
     </div>
 

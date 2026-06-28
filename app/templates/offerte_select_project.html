@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}Nieuwe offerte{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+
+        <h2 class="mb-1">
+
+            <i class="bi bi-file-earmark-plus"></i>
+
+            Nieuwe offerte
+
+        </h2>
+
+        <p class="text-muted mb-0">
+
+            Kies eerst een project.
+
+        </p>
+
+    </div>
+
+    <a href="/offertes"
+       class="btn btn-outline-secondary">
+
+        <i class="bi bi-arrow-left"></i>
+
+        Terug
+
+    </a>
+
+</div>
+
+<div class="card shadow">
+
+    <div class="card-body">
+
+        <form method="post">
+
+            <div class="mb-4">
+
+                <label class="form-label">
+
+                    Project
+
+                </label>
+
+                <select
+                    name="project_id"
+                    class="form-select"
+                    required>
+
+                    <option value="">
+                        Kies een project...
+                    </option>
+
+                    {% for project in projecten %}
+
+                    <option value="{{ project.id }}">
+
+                        {{ project.projectnummer }}
+                        -
+                        {{ project.naam }}
+                        (
+                        {{ project.klant.naam }}
+                        )
+
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+            <button
+                type="submit"
+                class="btn btn-success">
+
+                <i class="bi bi-check-circle"></i>
+
+                Offerte aanmaken
+
+            </button>
+
+            <a
+                href="/offertes"
+                class="btn btn-secondary">
+
+                Annuleren
+
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

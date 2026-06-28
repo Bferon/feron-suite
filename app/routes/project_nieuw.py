@@ -7,6 +7,7 @@ from sqlalchemy.orm import Session
 
 from app.database import get_db
 from app.crud.projecten import create_project
+from app.models.klant import Klant
 
 router = APIRouter()
 
@@ -17,12 +18,22 @@ templates = Jinja2Templates(directory="app/templates")
 async def nieuw_project(
     request: Request,
     klant_id: Optional[int] = None,
+    db: Session = Depends(get_db),
 ):
+
+    klanten = (
+        db.query(Klant)
+        .filter(Klant.actief == True)
+        .order_by(Klant.naam)
+        .all()
+    )
+
     return templates.TemplateResponse(
         request=request,
         name="project_nieuw.html",
         context={
             "klant_id": klant_id,
+            "klanten": klanten,
         },
     )
 
@@ -35,7 +46,8 @@ async def nieuw_project_opslaan(
     status: str = Form(...),
     db: Session = Depends(get_db),
 ):
-    create_project(
+
+    project = create_project(
         db,
         {
             "klant_id": klant_id,
@@ -46,6 +58,6 @@ async def nieuw_project_opslaan(
     )
 
     return RedirectResponse(
-        url=f"/klanten/{klant_id}",
+        url=f"/project/{project.id}",
         status_code=303,
     )

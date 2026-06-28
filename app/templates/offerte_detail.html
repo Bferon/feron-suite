@@ -185,68 +185,110 @@
 
                     </thead>
 
-                    <tbody>
+<tbody>
 
-                    {% for regel in offerte.regels %}
+{% for regel in offerte.regels %}
 
-                        <tr>
+<tr>
 
-                            <td>
+    <td>
 
-                                {{ regel.omschrijving }}
+        {% if regel.soort == "Materiaal" %}
 
-                            </td>
+            <i class="bi bi-box-seam text-primary"></i>
 
-                            <td class="text-center">
+        {% elif regel.soort == "Arbeid" %}
 
-                                {{ regel.aantal }}
+            <i class="bi bi-person-workspace text-success"></i>
 
-                            </td>
+        {% elif regel.soort == "Tekst" %}
 
-                            <td class="text-center">
+            <i class="bi bi-fonts text-secondary"></i>
 
-                                {{ regel.eenheid }}
+        {% endif %}
 
-                            </td>
+        {{ regel.omschrijving }}
 
-                            <td class="text-end">
+    </td>
 
-                                € {{ "%.2f"|format(regel.prijs) }}
+    <td class="text-center">
 
-                            </td>
+        {% if regel.soort == "Tekst" %}
 
-                            <td class="text-end">
+            -
 
-                                € {{ "%.2f"|format(regel.totaal) }}
+        {% else %}
 
-                            </td>
+            {{ regel.aantal }}
 
-                            <td class="text-end">
+        {% endif %}
 
-                                <a
-                                    href="/offerteregel/{{ regel.id }}/bewerken"
-                                    class="btn btn-warning btn-sm">
+    </td>
 
-                                    <i class="bi bi-pencil"></i>
+    <td class="text-center">
 
-                                </a>
+        {{ regel.eenheid }}
 
-                                <a
-                                    href="/offerteregel/{{ regel.id }}/verwijderen"
-                                    class="btn btn-danger btn-sm"
-                                    onclick="return confirm('Weet je zeker dat je deze regel wilt verwijderen?');">
+    </td>
 
-                                    <i class="bi bi-trash"></i>
+    <td class="text-end">
 
-                                </a>
+        {% if regel.soort == "Tekst" %}
 
-                            </td>
+            -
 
-                        </tr>
+        {% else %}
 
-                    {% endfor %}
+            € {{ "%.2f"|format(regel.prijs) }}
 
-                    </tbody>
+        {% endif %}
+
+    </td>
+
+    <td class="text-end">
+
+        {% if regel.soort == "Tekst" %}
+
+            -
+
+        {% else %}
+
+            € {{ "%.2f"|format(regel.totaal) }}
+
+        {% endif %}
+
+    </td>
+
+    <td class="text-end">
+
+        {% if regel.soort != "Tekst" %}
+
+        <a
+            href="/offerteregel/{{ regel.id }}/bewerken"
+            class="btn btn-warning btn-sm">
+
+            <i class="bi bi-pencil"></i>
+
+        </a>
+
+        {% endif %}
+
+        <a
+            href="/offerteregel/{{ regel.id }}/verwijderen"
+            class="btn btn-danger btn-sm"
+            onclick="return confirm('Weet je zeker dat je deze regel wilt verwijderen?');">
+
+            <i class="bi bi-trash"></i>
+
+        </a>
+
+    </td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
 
                 </table>
 

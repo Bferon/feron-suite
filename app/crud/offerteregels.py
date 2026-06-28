@@ -53,6 +53,8 @@ def create_offerteregel(
 
         materiaal_id=materiaal.id,
 
+        soort="Materiaal",
+
         omschrijving=materiaal.omschrijving,
 
         aantal=aantal,
@@ -73,6 +75,79 @@ def create_offerteregel(
         db,
         offerte_id,
     )
+
+    return regel
+
+
+def create_arbeidregel(
+    db: Session,
+    offerte_id: int,
+    omschrijving: str,
+    uren: float,
+    uurtarief: float,
+):
+
+    regel = OfferteRegel(
+
+        offerte_id=offerte_id,
+
+        materiaal_id=None,
+
+        soort="Arbeid",
+
+        omschrijving=omschrijving,
+
+        aantal=uren,
+
+        eenheid="uur",
+
+        prijs=uurtarief,
+
+        totaal=uren * uurtarief,
+
+    )
+
+    db.add(regel)
+    db.commit()
+    db.refresh(regel)
+
+    bereken_offerte_totaal(
+        db,
+        offerte_id,
+    )
+
+    return regel
+
+
+def create_tekstregel(
+    db: Session,
+    offerte_id: int,
+    omschrijving: str,
+):
+
+    regel = OfferteRegel(
+
+        offerte_id=offerte_id,
+
+        materiaal_id=None,
+
+        soort="Tekst",
+
+        omschrijving=omschrijving,
+
+        aantal=0,
+
+        eenheid="",
+
+        prijs=0,
+
+        totaal=0,
+
+    )
+
+    db.add(regel)
+    db.commit()
+    db.refresh(regel)
 
     return regel
 

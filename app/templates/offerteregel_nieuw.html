@@ -4,9 +4,31 @@
 
 {% block content %}
 
-<h2 class="mb-4">
-    Materiaal toevoegen
-</h2>
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+
+        <h2 class="mb-1">
+            <i class="bi bi-box-seam"></i>
+            Materiaal toevoegen
+        </h2>
+
+        <p class="text-muted mb-0">
+            Voeg een materiaal toe aan de offerte.
+        </p>
+
+    </div>
+
+    <a href="/offerte/{{ offerte_id }}"
+       class="btn btn-outline-secondary">
+
+        <i class="bi bi-arrow-left"></i>
+
+        Terug
+
+    </a>
+
+</div>
 
 <div class="card shadow">
 
@@ -14,25 +36,35 @@
 
         <form method="post">
 
-            <div class="mb-3">
+            <div class="mb-4">
 
                 <label class="form-label">
 
-                    Materiaal
+                    <strong>Zoek materiaal</strong>
 
                 </label>
 
+                <input
+                    type="text"
+                    id="materiaalZoeken"
+                    class="form-control mb-3"
+                    placeholder="Typ om te zoeken...">
+
                 <select
+                    id="materiaalSelect"
                     name="materiaal_id"
                     class="form-select"
+                    size="12"
                     required>
 
                     {% for materiaal in materialen %}
 
-                        <option value="{{ materiaal.id }}">
+                        <option
+                            value="{{ materiaal.id }}">
 
                             {{ materiaal.omschrijving }}
-                            (€ {{ "%.2f"|format(materiaal.verkoopprijs) }})
+                            —
+                            € {{ "%.2f"|format(materiaal.verkoopprijs) }}
 
                         </option>
 
@@ -42,43 +74,75 @@
 
             </div>
 
-            <div class="mb-3">
+            <div class="row">
 
-                <label class="form-label">
+                <div class="col-md-4">
 
-                    Aantal
+                    <label class="form-label">
 
-                </label>
+                        <strong>Aantal</strong>
 
-                <input
-                    type="number"
-                    name="aantal"
-                    value="1"
-                    min="1"
-                    step="0.1"
-                    class="form-control">
+                    </label>
+
+                    <input
+                        type="number"
+                        name="aantal"
+                        value="1"
+                        min="1"
+                        step="0.1"
+                        class="form-control">
+
+                </div>
 
             </div>
 
-            <button
-                class="btn btn-success">
+            <hr>
 
-                Toevoegen
+            <div class="d-flex gap-2">
 
-            </button>
+                <button
+                    type="submit"
+                    class="btn btn-success">
 
-            <a
-                href="/offerte/{{ offerte_id }}"
-                class="btn btn-secondary">
+                    <i class="bi bi-check-circle"></i>
 
-                Annuleren
+                    Materiaal toevoegen
 
-            </a>
+                </button>
+
+                <a
+                    href="/offerte/{{ offerte_id }}"
+                    class="btn btn-secondary">
+
+                    Annuleren
+
+                </a>
+
+            </div>
 
         </form>
 
     </div>
 
 </div>
+
+<script>
+
+const zoekveld = document.getElementById("materiaalZoeken");
+const lijst = document.getElementById("materiaalSelect");
+
+zoekveld.addEventListener("keyup", function(){
+
+    const filter = this.value.toLowerCase();
+
+    for(const optie of lijst.options){
+
+        optie.hidden = !optie.text.toLowerCase().includes(filter);
+
+    }
+
+});
+
+</script>
 
 {% endblock %}

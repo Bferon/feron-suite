@@ -24,11 +24,16 @@ from app.routes import project_nieuw
 from app.routes import project_bewerken
 from app.routes import projecten_archief
 from app.routes import project_ess
+from app.routes import ess_configuratie
 
 from app.routes import offertes
 from app.routes import offerte
 from app.routes import offerte_nieuw
-
+from app.routes import offerteregel_nieuw
+from app.routes import offerte_arbeid_nieuw
+from app.routes import offerte_tekst_nieuw
+from app.routes import offerte_select_project
+from app.routes import offerte_status
 from app.routes import ess
 from app.routes import ai
 from app.routes import materialen
@@ -37,6 +42,7 @@ from app.routes import instellingen
 from app.routes import zoeken
 from app.routes import offerteregel_nieuw
 from app.routes import ess_wizard
+
 from app.models import (
     Klant,
     Project,
@@ -77,15 +83,25 @@ app.include_router(project_ess.router)
 app.include_router(projecten_archief.router)
 
 
-# Offertes
+
 app.include_router(offertes.router)
-app.include_router(offerte.router)
+
+app.include_router(offerte_select_project.router)
+
 app.include_router(offerte_nieuw.router)
+
 app.include_router(offerteregel_nieuw.router)
+app.include_router(offerte_arbeid_nieuw.router)
+app.include_router(offerte_tekst_nieuw.router)
+
+app.include_router(offerte_status.router)
+
+app.include_router(offerte.router)
 
 # Installaties
 app.include_router(ess.router)
 app.include_router(ess_wizard.router)
+app.include_router(ess_configuratie.router)
 
 # AI
 app.include_router(ai.router)
