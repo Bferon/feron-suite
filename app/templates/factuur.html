@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+
+{% block title %}Factuur{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+
+        <h2 class="mb-1">
+            Factuur {{ factuur.factuurnummer }}
+        </h2>
+
+        <p class="text-muted mb-0">
+            Detailoverzicht van de factuur.
+        </p>
+
+    </div>
+
+    <div>
+
+        <a href="/facturen" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left"></i>
+            Terug
+        </a>
+
+        <a href="/facturen/{{ factuur.id }}/pdf"
+           class="btn btn-danger">
+            <i class="bi bi-file-earmark-pdf"></i>
+            PDF
+        </a>
+
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-lg-8">
+
+        <div class="card shadow-sm mb-4">
+
+            <div class="card-header">
+                Factuurgegevens
+            </div>
+
+            <div class="card-body">
+
+                <table class="table">
+
+                    <tr>
+                        <th width="220">Factuurnummer</th>
+                        <td>{{ factuur.factuurnummer }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Klant</th>
+                        <td>{{ factuur.klant.naam }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Datum</th>
+                        <td>{{ factuur.datum }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Vervaldatum</th>
+                        <td>{{ factuur.vervaldatum }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Status</th>
+                        <td>
+
+                            {% if factuur.status == "Betaald" %}
+
+                                <span class="badge bg-success">
+                                    Betaald
+                                </span>
+
+                            {% elif factuur.status == "Verzonden" %}
+
+                                <span class="badge bg-primary">
+                                    Verzonden
+                                </span>
+
+                            {% elif factuur.status == "Concept" %}
+
+                                <span class="badge bg-secondary">
+                                    Concept
+                                </span>
+
+                            {% else %}
+
+                                <span class="badge bg-danger">
+                                    {{ factuur.status }}
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-4">
+
+        <div class="card shadow-sm">
+
+            <div class="card-header">
+                Bedragen
+            </div>
+
+            <div class="card-body">
+
+                <table class="table mb-0">
+
+                    <tr>
+
+                        <th>Subtotaal</th>
+
+                        <td class="text-end">
+
+                            € {{ "%.2f"|format(factuur.subtotaal) }}
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>BTW</th>
+
+                        <td class="text-end">
+
+                            € {{ "%.2f"|format(factuur.btw) }}
+
+                        </td>
+
+                    </tr>
+
+                    <tr class="table-light">
+
+                        <th>Totaal</th>
+
+                        <th class="text-end">
+
+                            € {{ "%.2f"|format(factuur.totaal) }}
+
+                        </th>
+
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

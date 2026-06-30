@@ -1,15 +1,16 @@
 from fastapi import APIRouter, Request, Depends
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
+
 from sqlalchemy.orm import Session
 from sqlalchemy import func
 
 from app.database import get_db
 
-from app.models.klant import Klant
 from app.models.project import Project
-from app.models.materiaal import Materiaal
-from app.models.offerte import Offerte
+
+from app.services.dashboard_service import DashboardService
+from app.services.offerte_service import OfferteService
 
 router = APIRouter()
 
@@ -22,36 +23,21 @@ async def dashboard(
     db: Session = Depends(get_db),
 ):
 
-    actieve_klanten = (
-        db.query(Klant)
-        .filter(Klant.actief == True)
-        .count()
-    )
+    dashboard_service = DashboardService(db)
+    offerte_service = OfferteService(db)
 
-    actieve_projecten = (
-        db.query(Project)
-        .filter(Project.actief == True)
-        .count()
-    )
+    stats = dashboard_service.get_stats()
 
-    actieve_offertes = (
-        db.query(Offerte)
-        .filter(Offerte.actief == True)
-        .count()
-    )
-
-    aantal_materialen = (
-        db.query(Materiaal)
-        .filter(Materiaal.actief == True)
-        .count()
-    )
+    actieve_klanten = stats["actieve_klanten"]
+    actieve_projecten = stats["actieve_projecten"]
+    actieve_offertes = stats["actieve_offertes"]
+    aantal_materialen = stats["aantal_materialen"]
 
     totale_offertewaarde = (
-    db.query(func.sum(Project.offertebedrag))
-    .filter(Project.actief == True)
-    .scalar()
-    or 0
-    
+        db.query(func.sum(Project.offertebedrag))
+        .filter(Project.actief == True)
+        .scalar()
+        or 0
     )
 
     ess_projecten = (
@@ -89,13 +75,7 @@ async def dashboard(
         .all()
     )
 
-    laatste_offertes = (
-        db.query(Offerte)
-        .filter(Offerte.actief == True)
-        .order_by(Offerte.id.desc())
-        .limit(5)
-        .all()
-    )
+    laatste_offertes = offerte_service.get_laatste_offertes()
 
     return templates.TemplateResponse(
         request=request,

@@ -4,7 +4,8 @@ from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 
 from app.database import get_db
-from app.crud.offertes import get_alle_offertes
+
+from app.models.offerte import Offerte
 
 router = APIRouter()
 
@@ -17,12 +18,39 @@ async def offertes(
     db: Session = Depends(get_db),
 ):
 
-    offertes = get_alle_offertes(db)
+    offertes = (
+        db.query(Offerte)
+        .filter(Offerte.actief == True)
+        .order_by(Offerte.id.desc())
+        .all()
+    )
 
     return templates.TemplateResponse(
-        request=request,
-        name="offertes.html",
-        context={
+        "offertes.html",
+        {
+            "request": request,
             "offertes": offertes,
+        },
+    )
+
+
+@router.get("/offerte/{offerte_id}", response_class=HTMLResponse)
+async def offerte(
+    offerte_id: int,
+    request: Request,
+    db: Session = Depends(get_db),
+):
+
+    offerte = (
+        db.query(Offerte)
+        .filter(Offerte.id == offerte_id)
+        .first()
+    )
+
+    return templates.TemplateResponse(
+        "offerte.html",
+        {
+            "request": request,
+            "offerte": offerte,
         },
     )

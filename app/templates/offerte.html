@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% block title %}Offertes{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+
+        <h2 class="mb-1">
+            Offertes
+        </h2>
+
+        <p class="text-muted mb-0">
+            Overzicht van alle offertes.
+        </p>
+
+    </div>
+
+    <a href="/offerte/nieuw" class="btn btn-primary">
+
+        <i class="bi bi-plus-circle"></i>
+
+        Nieuwe offerte
+
+    </a>
+
+</div>
+
+<div class="card shadow-sm">
+
+    <div class="card-body p-0">
+
+        {% if offertes %}
+
+        <table class="table table-hover mb-0">
+
+            <thead>
+
+                <tr>
+
+                    <th>Offertenummer</th>
+                    <th>Klant</th>
+                    <th>Status</th>
+                    <th class="text-end">Totaal</th>
+                    <th></th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for offerte in offertes %}
+
+                <tr>
+
+                    <td>
+
+                        {{ offerte.offertenummer }}
+
+                    </td>
+
+                    <td>
+
+                        {{ offerte.klant.naam }}
+
+                    </td>
+
+                    <td>
+
+                        {{ offerte.status }}
+
+                    </td>
+
+                    <td class="text-end">
+
+                        € {{ "%.2f"|format(offerte.totaal) }}
+
+                    </td>
+
+                    <td class="text-end">
+
+                        <a
+                            href="/offerte/{{ offerte.id }}"
+                            class="btn btn-outline-primary btn-sm">
+
+                            Open
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        {% else %}
+
+        <div class="text-center py-5">
+
+            <i class="bi bi-file-earmark-text fs-1 text-muted"></i>
+
+            <h4 class="mt-3">
+
+                Nog geen offertes
+
+            </h4>
+
+            <p class="text-muted">
+
+                Maak je eerste offerte aan.
+
+            </p>
+
+            <a
+                href="/offerte/nieuw"
+                class="btn btn-primary">
+
+                Eerste offerte
+
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}
